@@ -30,7 +30,7 @@ APP.data.certifications = [
     issuer: "Microsoft",
     issuerIcon: "azure",
     status: "active",
-    group: "primary",
+    group: "supporting",
     verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/AlexanderHilberer-2441/16DF041E74DE312C?sharingId=8D0C852D1B22410B",
     order: 4
   },
@@ -41,7 +41,7 @@ APP.data.certifications = [
     issuer: "Microsoft",
     issuerIcon: "azure",
     status: "active",
-    group: "primary",
+    group: "supporting",
     verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/AlexanderHilberer-2441/C9DFB5E4DCE09CF5?sharingId=8D0C852D1B22410B",
     order: 3
   },
@@ -88,5 +88,16 @@ APP.data.certifications = [
     group: "primary",
     verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/AlexanderHilberer-2441/A19EA22DDBDC4965?sharingId=8D0C852D1B22410B",
     order: 2
+  },
+  {
+    id: "ai-103",
+    code: "AI-103",
+    name: "Azure AI Apps and Agents Developer Associate",
+    issuer: "Microsoft",
+    issuerIcon: "azure",
+    status: "active",
+    group: "primary",
+    verifyUrl: "https://learn.microsoft.com/api/credentials/share/de-de/AlexanderHilberer-2441/F43D63C50E6A7431?sharingId=8D0C852D1B22410B",
+    order: 3
   }
 ];
