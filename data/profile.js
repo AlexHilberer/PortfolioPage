@@ -2,7 +2,7 @@ window.APP = window.APP || { data: {}, i18n: {} };
 
 APP.data.profile = {
   name: "Alexander Hilberer",
-  githubUrl: "https://github.com/AkexHilberer",
+  githubUrl: "https://github.com/AlexHilberer",
   email: "alexander@hilberer.dev",
   linkedinUrl: "https://www.linkedin.com/in/alexander-hilberer-166413194",
   resume: {
