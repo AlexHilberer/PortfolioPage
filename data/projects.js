@@ -4,7 +4,7 @@ APP.data.projects = [
   {
     id: "onprem-data-lakehouse",
     title: "On-Prem Data Lakehouse",
-    link: "https://github.com/ShollyWolly/On-Prem-Data-Lakehouse",
+    link: "https://github.com/AkexHilberer/On-Prem-Data-Lakehouse",
     environment: "onprem",
     highlights: ["identity", "orchestration", "analytics"],
     tech: [
@@ -15,7 +15,7 @@ APP.data.projects = [
   {
     id: "onprem-agentic-bi",
     title: "On-Prem AgenticBI",
-    link: "https://github.com/ShollyWolly/On-Prem-AgenticBI",
+    link: "https://github.com/AkexHilberer/On-Prem-AgenticBI",
     environment: "onprem",
     highlights: ["access", "governance", "tools"],
     tech: [
@@ -26,7 +26,7 @@ APP.data.projects = [
   {
     id: "onprem-mlops",
     title: "On-Prem Machine Learning Operations",
-    link: "https://github.com/ShollyWolly/OnPremise-Machine-Learning-Operations",
+    link: "https://github.com/AkexHilberer/OnPremise-Machine-Learning-Operations",
     environment: "onprem",
     highlights: ["lifecycle", "monitoring", "delivery"],
     tech: [
@@ -37,7 +37,7 @@ APP.data.projects = [
   {
     id: "fabric-agentic-analytics",
     title: "Fabric Financial Analytics Platform",
-    link: "https://github.com/ShollyWolly/Fabric-Agentic-Analytics",
+    link: "https://github.com/AkexHilberer/Fabric-Agentic-Analytics",
     environment: "azure",
     highlights: ["infrastructure", "analytics", "integration"],
     tech: [
