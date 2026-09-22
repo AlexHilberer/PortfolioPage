@@ -26,7 +26,7 @@ APP.data.projects = [
   {
     id: "onprem-mlops",
     title: "On-Prem Machine Learning Operations",
-    link: "https://github.com/AlexHilberer/OnPremise-Machine-Learning-Operations",
+    link: "https://github.com/AlexHilberer/On-Prem-Machine-Learning-Operations",
     environment: "onprem",
     highlights: ["lifecycle", "monitoring", "delivery"],
     tech: [
