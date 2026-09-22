@@ -165,6 +165,16 @@ function replaceMount(html, id, content) {
   return html.replace(expression, "$1" + content + "$3");
 }
 
+function setMountLang(html, id, locale) {
+  const expression = new RegExp('(<[a-zA-Z][\\w:-]*[^>]*id="' + id + '"[^>]*)(>)', "g");
+  return html.replace(expression, function (match, start, end) {
+    if (/data-lang="[^"]*"/.test(start)) {
+      return start.replace(/data-lang="[^"]*"/, 'data-lang="' + locale + '"') + end;
+    }
+    return start + ' data-lang="' + locale + '"' + end;
+  });
+}
+
 function replaceHrefById(html, id, value) {
   const expression = new RegExp('(<[a-zA-Z][\\w:-]*[^>]*id="' + id + '"[^>]*)(>)', "g");
   return html.replace(expression, function (match, start, end) {
@@ -263,8 +273,11 @@ function renderPage(template, app, locale) {
   html = replaceHrefById(html, "resume-download-link-work", assetPrefix + profile.resume[locale]);
   html = html.replace(/<div id="lang-toggle"[\s\S]*?<\/div>/, renderLanguageToggle(locale, labels));
   html = replaceMount(html, "projects-grid", renderProjects(app, locale));
+  html = setMountLang(html, "projects-grid", locale);
   html = replaceMount(html, "exploring-list", renderExploring(app, locale));
+  html = setMountLang(html, "exploring-list", locale);
   html = replaceMount(html, "certifications-grid", renderCertifications(app, locale, primary));
+  html = setMountLang(html, "certifications-grid", locale);
   html = replaceMount(html, "supporting-certifications-grid", renderCertifications(app, locale, supporting));
   html = replaceMount(html, "retired-certifications-grid", renderCertifications(app, locale, retired));
   html = html.replace('<span id="year"></span>', '<span id="year">' + new Date().getFullYear() + "</span>");

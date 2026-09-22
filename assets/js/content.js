@@ -10,6 +10,8 @@ window.APP = window.APP || { data: {}, i18n: {} };
   function renderProjects() {
     var mount = document.getElementById("projects-grid");
     if (!mount) return;
+    var lang = document.documentElement.lang;
+    if (mount.getAttribute("data-lang") === lang) return;
     var t = APP.i18n.t;
 
     var projects = APP.data.projects.slice().sort(byOrder);
@@ -69,11 +71,14 @@ window.APP = window.APP || { data: {}, i18n: {} };
 
       mount.appendChild(card);
     });
+    mount.setAttribute("data-lang", lang);
   }
 
   function renderExploring() {
     var mount = document.getElementById("exploring-list");
     if (!mount) return;
+    var lang = document.documentElement.lang;
+    if (mount.getAttribute("data-lang") === lang) return;
     var t = APP.i18n.t;
 
     var items = APP.data.exploring.slice().sort(byOrder);
@@ -104,6 +109,7 @@ window.APP = window.APP || { data: {}, i18n: {} };
       item.appendChild(text);
       mount.appendChild(item);
     });
+    mount.setAttribute("data-lang", lang);
   }
 
   function renderResumeLink() {
@@ -171,6 +177,10 @@ window.APP = window.APP || { data: {}, i18n: {} };
   }
 
   function renderCertifications() {
+    var mount = document.getElementById("certifications-grid");
+    var lang = document.documentElement.lang;
+    if (mount && mount.getAttribute("data-lang") === lang) return;
+
     var certifications = APP.data.certifications.slice().sort(byOrder);
     var active = certifications.filter(function (cert) {
       return cert.status === "active";
@@ -187,9 +197,10 @@ window.APP = window.APP || { data: {}, i18n: {} };
     var more = document.getElementById("credentials-more");
     var retiredSection = document.getElementById("credentials-retired");
 
-    renderCertificationCards(document.getElementById("certifications-grid"), primary);
+    renderCertificationCards(mount, primary);
     renderCertificationCards(document.getElementById("supporting-certifications-grid"), supporting);
     renderCertificationCards(document.getElementById("retired-certifications-grid"), retired);
+    if (mount) mount.setAttribute("data-lang", lang);
 
     if (more) more.style.display = supporting.length ? "" : "none";
     if (retiredSection) retiredSection.style.display = retired.length ? "" : "none";
