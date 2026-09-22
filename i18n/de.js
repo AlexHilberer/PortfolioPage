@@ -4,7 +4,7 @@ APP.i18n.de = {
   meta: {
     htmlLang: "de",
     title: "Alexander Hilberer | Data & AI Systems Engineer",
-    description: "Portfolio von Alexander Hilberer, Data & AI Systems Engineer aus dem Saarland, Deutschland. Data Platforms, MLOps, Google Cloud, Azure und Open-Source-Systeme."
+    description: "Alex Hilberer baut Daten- und KI-Systeme: Datenplattformen, MLOps, agentische KI und ein ausgeprägtes Self-Hosting-Hobby. Aus dem Saarland, Deutschland."
   },
   nav: {
     brand: "Alexander Hilberer",
@@ -13,52 +13,57 @@ APP.i18n.de = {
     menuCloseAria: "Menü schließen",
     about: "Über mich",
     projects: "Projekte",
-    experience: "Erfahrung",
+    work: "Hintergrund",
     credentials: "Zertifizierungen",
     contact: "Kontakt"
   },
   hero: {
     role: "Data & AI Systems Engineer",
     location: "Saarland, Deutschland",
-    tagline: "Ich entwickle Daten- und KI-Systeme mit Fokus auf nachvollziehbare Datenflüsse, klare Zugriffsgrenzen und langfristige Weiterentwicklung.",
+    tagline: "Ich baue Daten- und KI-Systeme, vor allem Datenplattformen, MLOps und agentische Infrastruktur, mit einem Hang dazu, mehr davon selbst zu hosten als eigentlich nötig wäre.",
     ctaProjects: "Projekte entdecken",
     ctaContact: "Kontakt aufnehmen",
     ctaResume: "Lebenslauf herunterladen"
   },
   about: {
     heading: "Über mich",
-    intro: "Ich entwickle Daten- und KI-Lösungen an der Schnittstelle von Architektur, Betrieb und Governance. Entscheidend ist für mich nicht nur, dass ein System funktioniert, sondern dass Datenflüsse, Zugriffe und Weiterentwicklung von Anfang an nachvollziehbar sind.",
-    personal: "Neue Technologien erschließe ich praktisch, in eigenen Projekten und beim Self-Hosting. So prüfe ich nicht nur, was ein Werkzeug verspricht, sondern auch, wie es sich integriert und wo seine Grenzen liegen. Beim Schwimmen und Wandern finde ich den Ausgleich dazu.",
-    principleOne: "Datenflüsse und Betriebswege so gestalten, dass Änderungen und Fehler sichtbar bleiben.",
-    principleTwo: "Zugriffe und Governance als Architekturentscheidungen behandeln.",
-    principleThree: "Neue Technologien dort einsetzen, wo sie eine konkrete Anforderung besser lösen.",
-    educationHeading: "Ausbildung",
-    educationBachelor: "B.Sc. Wirtschaftsinformatik · Hochschule Trier",
-    educationMaster: "M.Sc. Artificial Intelligence & Data Science · Hochschule Trier"
-  },
-  experience: {
-    heading: "Erfahrung",
-    present: "Heute",
-    "previsionz-consultant": {
-      role: "BI & Data Science Consultant",
-      location: "Saarbrücken, Deutschland",
-      description: "Konzeption einer agentischen KI-Lösung zur Simulation und Analyse von Vertriebsdaten. Entwicklung eines End-to-End-MLOps-Workflows in Azure Machine Learning zur Klassifikation von Kundenabwanderung. Implementierung eines Empfehlungssystems für Bankprodukte mittels hybrider kollaborativer Filterverfahren. Unterstützung bei der Migration von Azure Synapse Analytics zu Microsoft Fabric."
-    },
-    "previsionz-werkstudent": {
-      role: "Werkstudent Data Science",
-      location: "Saarbrücken, Deutschland",
-      description: "Analyse und Vergleich von MLOps-Lebenszyklen in Azure, Google Cloud Platform und AWS. Konzeption und Implementierung einer On-Premises-Lakehouse-Architektur. Bewertung und Integration von Microsoft Fabric in das zentrale Unternehmensportfolio."
-    },
-    "neodigital-bachelor-thesis-werkstudent": {
-      role: "Bachelorarbeit & Werkstudent IT",
-      location: "Neunkirchen, Deutschland",
-      description: "Entwicklung und Evaluation linearer Modelle zur Schätzung des Treibstoffverbrauchs von Fahrzeugen auf Basis einfacher Sensordaten. Anschließend Mitarbeit an Entwicklungsprojekten mit Schwerpunkt auf Frontend-Softwareentwicklung."
-    },
-    "neodigital-internship-telematics": {
-      role: "Praktikum IT-Entwicklung · Telematik",
-      location: "Neunkirchen, Deutschland",
-      description: "Evaluierung geeigneter NoSQL-Datenbanklösungen. Aufbau eines Cassandra-Clusters mit mehreren Docker-Containern. Entwicklung eines Datenmodells zur Speicherung von Geschwindigkeitsdaten. Anbindung von Cassandra an die bestehende Backend-Landschaft."
+    intro: "Mir geht es nicht nur darum, dass ein System funktioniert, sondern dass ich wirklich verstehe, wie es funktioniert: wo die Daten herkommen, wohin sie fließen und was passiert, wenn sich etwas ändert.",
+    personal: "Die meisten meiner Nebenprojekte starten mit derselben Frage: Könnte ich das komplett selbst betreiben? Meistens ja, mit ein paar schmerzhaften Umwegen dazwischen. Mich mit Daten zu beschäftigen und Systeme zu bauen macht mir einfach Spaß. Angefangen hat das schon im Bachelor, und seitdem ist es eher mehr als weniger geworden. Den Ausgleich dazu finde ich beim Schwimmen und Wandern, am liebsten so oft wie möglich.",
+    principleOne: "Wenn etwas kaputtgeht, will ich das sofort sehen, nicht drei Wochen später in einem Log entdecken.",
+    principleTwo: "Zugriffe und Governance denke ich von Anfang an mit, nicht als Nachtrag, wenn es schon zu spät ist.",
+    principleThree: "Ich probiere neue Tools gerne aus, aber im Projekt landen nur die, die ein echtes Problem lösen.",
+    exploring: {
+      heading: "Womit ich mich gerade beschäftige",
+      dataplatforms: {
+        title: "Datenplattformen",
+        description: "Spark, Iceberg, Airflow, Trino und die semantischen Schichten obendrauf."
+      },
+      aisystems: {
+        title: "KI-Systeme",
+        description: "Agenten, MCP und genau so viel Zugriff auf Unternehmensdaten wie nötig, nicht mehr."
+      },
+      mlops: {
+        title: "MLOps",
+        description: "Deployment, Monitoring, Retraining und Explainability, nicht nur das Modell."
+      },
+      selfhosting: {
+        title: "Self-Hosting",
+        description: "Weil ein Dutzend Container zuhause offenbar als Hobby zählt."
+      },
+      cloudiac: {
+        title: "Cloud & IaC",
+        description: "Vor allem Azure, Fabric und Terraform, reproduzierbar oder gar nicht."
+      }
     }
+  },
+  work: {
+    heading: "Wo ich herkomme",
+    story1: "Angefangen hat das alles ziemlich planlos. Ich habe Wirtschaftsinformatik im Bachelor studiert, vor allem weil ich meine wirtschaftliche Vorbildung nicht komplett aufgeben wollte, aber gleichzeitig schon immer an Computern hängen geblieben bin. Von Data Science hatte ich zu dem Zeitpunkt keine Ahnung. Irgendwann saß ich in einer Statistik-Vorlesung und war zum ersten Mal richtig fasziniert, ausgerechnet von einer linearen Regression.",
+    story2: "Von da an ging es eher schleichend weiter. Ich habe mir zusätzliche Vorlesungen wie Advanced Business Analytics, Klassifikationsverfahren im Data Mining oder Maschinelles Lernen reingezogen, einfach weil mich das Thema nicht mehr losgelassen hat. Ein IT-Praktikum und meine Bachelorarbeit haben mir dann noch klarer gezeigt, wie viel es in der Informatik zu entdecken gibt und wie wenig ich eigentlich wusste, also habe ich mich für den Master in Artificial Intelligence & Data Science entschieden, quasi ein Fachwechsel von Wirtschaft zu Informatik.",
+    story3: "Am Anfang bin ich damit ziemlich auf die Nase gefallen, die Mathematik war deutlich härter als gedacht, aber mit ein paar zu vielen durchgemachten Nächten habe ich die Lücken aufgeholt.",
+    story4: "Parallel dazu bin ich als Werkstudent bei PREVISIONZ eingestiegen und habe dort zum ersten Mal gesehen, wie Datenplattformen auf Enterprise-Niveau wirklich aussehen. Irgendwann kam der Gedanke: Wenn das in der Cloud funktioniert, bekomme ich das eigentlich auch selbst hin, mit Open Source und eigener Hardware. Genau daraus sind meine ersten eigenen Projekte entstanden.",
+    outro: "Heute arbeite ich Vollzeit als BI & Data Science Consultant bei PREVISIONZ in Saarbrücken und baue für Kunden Cloud-Plattformen und ML-Workflows.",
+    resumeLinkLabel: "Vollständiger Lebenslauf ->"
   },
   certifications: {
     heading: "Zertifizierungen",
@@ -69,42 +74,42 @@ APP.i18n.de = {
   },
   projects: {
     heading: "Projekte",
-    intro: "Die Projekte zeigen, wie ich enterprise-orientierte Daten- und KI-Architekturen von der Integration bis zum Betrieb umsetze. Im Fokus stehen klare Datenflüsse, kontrollierte Zugriffe, wiederholbare Bereitstellung und das praktische Erproben neuer Technologien.",
+    intro: "Ein paar Dinge, die ich gebaut habe, um herauszufinden, wie sie wirklich funktionieren, nicht nur, wie sie funktionieren sollen.",
     linkLabel: "Repository öffnen",
     environments: {
       onprem: "Self-hosted",
       azure: "Azure"
     },
     "onprem-data-lakehouse": {
-      description: "Enterprise-orientiertes, selbst gehostetes Single-Host-Lakehouse für Retaildaten. Sie verbindet Batch-Verarbeitung, offene Tabellenformate, rollenbasierte Datenzugriffe und Analytics in einer lokalen Umgebung.",
+      description: "Ich wollte wissen, wie viel von einer enterprise-tauglichen Datenplattform ich selbst betreiben kann, also habe ich ein komplettes Lakehouse für Retaildaten auf einer einzigen Maschine gebaut: Batch-Verarbeitung, offene Tabellenformate, rollenbasierte Zugriffe und Analytics, ganz ohne Cloud.",
       highlights: {
-        identity: "LDAP-Rollen und Ranger-Policies für kontrollierten Trino-Zugriff modelliert.",
-        orchestration: "Bronze-, Silver- und Gold-Transformationen mit Airflow und Spark orchestriert, inklusive Data-Quality-Checks.",
-        analytics: "Kuratierten Datenzugriff über Trino, Cube und Superset bereitgestellt."
+        identity: "LDAP-Rollen und Ranger-Policies sorgen dafür, dass der Trino-Zugriff eng begrenzt bleibt, statt offen für alle.",
+        orchestration: "Airflow und Spark orchestrieren Bronze-, Silver- und Gold-Transformationen inklusive Data-Quality-Checks.",
+        analytics: "Trino, Cube und Superset stellen die kuratierten Daten bereit."
       }
     },
     "onprem-agentic-bi": {
-      description: "Lokale Agentic-BI-Umgebung für kontrollierte Abfragen auf modellierten Daten. Sie zeigt, wie Chat-Agenten über eine semantische Schicht auf modellierte Daten zugreifen und welche Identitäts- und Berechtigungsschritte dafür nötig sind.",
+      description: "Der interessante Teil, wenn man einem KI-Agenten Zugriff auf Business-Daten gibt, war nie das Chat-Fenster. Er lag darin, sicherzustellen, dass der Agent wirklich nur sieht, was die Person dahinter sehen darf, also verbindet dieses Projekt Identität und Berechtigungen konsequent über Agent, MCP und semantische Schicht.",
       highlights: {
-        access: "LDAP, Authentik OIDC/OAuth und einen eigenen Cube-MCP-Gateway verbunden.",
-        governance: "MCP-Abfragen an die angemeldete Identität gebunden und für diesen Pfad rollenbasierte PII-Maskierung umgesetzt.",
-        tools: "Agentenabfragen und Dashboard-Zugriff bewusst getrennt, das Dashboard nutzt eine gemeinsame Service-Identität."
+        access: "LDAP, Authentik OIDC/OAuth und ein eigenes Cube-MCP-Gateway regeln, wer reinkommt.",
+        governance: "MCP-Abfragen tragen die angemeldete Identität, inklusive rollenbasierter PII-Maskierung auf diesem Pfad.",
+        tools: "Agentenabfragen und Dashboard-Zugriff bleiben bewusst getrennt, das Dashboard läuft über eine eigene Service-Identität."
       }
     },
     "onprem-mlops": {
-      description: "Lokaler MLOps-Workflow für ein Klassifikationsszenario. Sie verbindet Training, Tracking, Batch-Inferenz und Monitoring, um Modelllebenszyklen praktisch abzubilden.",
+      description: "Ein Modell zu trainieren ist der einfache Teil. Dieses Projekt baut alles drumherum: Tracking, Batch-Inferenz, Monitoring, Drift-Erkennung, Explainability und Retraining, für ein Klassifikationsproblem, das wirklich produktiv laufen sollte, nicht nur im Notebook.",
       highlights: {
-        lifecycle: "Airflow-DAGs für Batch-Inferenz, Monitoring und Retraining mit MLflow-Tracking verknüpft.",
-        monitoring: "Klassifikationsmetriken, Feature-Drift und SHAP-Erklärungen als wiederholbare Auswertungen implementiert.",
-        delivery: "Challenger-Modelle per Cross-Validation verglichen und Promotion-Entscheidungen protokolliert."
+        lifecycle: "Airflow-DAGs verbinden Batch-Inferenz, Monitoring und Retraining, MLflow trackt jeden Lauf.",
+        monitoring: "Klassifikationsmetriken, Feature-Drift und SHAP-Erklärungen laufen als wiederholbare, automatisierte Checks.",
+        delivery: "Challenger-Modelle werden per Cross-Validation verglichen, jede Promotion-Entscheidung wird protokolliert."
       }
     },
     "fabric-agentic-analytics": {
-      description: "Reproduzierbare Fabric-Analytics-Strecke für Finanztransaktionen. Schwerpunkt sind Infrastructure as Code, Medallion-Verarbeitung und die Bereitstellung von Analytics-Artefakten.",
+      description: "Ein Experiment darin, eine Microsoft-Fabric-Umgebung wie Software zu behandeln statt wie etwas, das man sich manuell zusammenklickt. Infrastruktur, Medallion-Pipeline, semantisches Modell und Power-BI-Reports werden über Terraform und fabric-cicd reproduzierbar bereitgestellt, mit einer optionalen KI-Schicht obendrauf.",
       highlights: {
-        infrastructure: "Azure-Basisinfrastruktur und Fabric-Workspace mit Terraform bereitgestellt.",
-        analytics: "Medallion-Pipeline, semantisches Modell und Power-BI-Report reproduzierbar veröffentlicht.",
-        integration: "Lokale KI-Chat-Schicht und Realtime-Erweiterung als getrennte, optionale Module umgesetzt."
+        infrastructure: "Terraform stellt die Azure-Basisinfrastruktur und den Fabric-Workspace bereit.",
+        analytics: "Medallion-Pipeline, semantisches Modell und Power-BI-Report werden reproduzierbar veröffentlicht, ganz ohne manuelles Klicken.",
+        integration: "Die lokale KI-Chat-Schicht und die Realtime-Erweiterung bleiben separate, optionale Module obendrauf."
       }
     }
   },

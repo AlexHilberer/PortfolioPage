@@ -217,109 +217,52 @@
   content: "•";
 }
 
-.about__list {
-  margin: 0;
+.exploring {
   padding-left: 24px;
   border-left: 1px solid var(--color-border);
 }
 
-.about__list dt {
+.exploring__heading {
+  margin: 0;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.75rem;
+  font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.about__list dd {
-  margin: 6px 0 0;
+.exploring-list {
+  display: grid;
+  gap: 18px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.about__list dd.about__degree {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 22px;
-}
-
-.about__degree-main {
+.exploring-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
-.about__degree-icon {
-  margin-top: 4px;
+.exploring-item__icon {
+  margin-top: 2px;
 }
 
-.about__degree-years {
-  margin-left: 24px;
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-}
-
-/* Experience */
-.experience-list {
-  display: grid;
-  gap: 0;
-}
-
-.experience-item {
-  position: relative;
-  padding: 0 0 36px 24px;
-  border-left: 1px solid var(--color-border);
-}
-
-.experience-item::before {
-  position: absolute;
-  top: 7px;
-  left: -4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  content: "";
-}
-
-.experience-item:last-child {
-  padding-bottom: 0;
-}
-
-.experience-item__header {
+.exploring-item__text {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.experience-item__role {
+.exploring-item__title {
   font-weight: 600;
 }
 
-.experience-item__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
-  margin-top: 6px;
-}
-
-.experience-item__dates,
-.experience-item__location {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.exploring-item__description {
   color: var(--color-text-muted);
-  font-size: 0.84rem;
-}
-
-.experience-item__dates {
-  font-family: var(--font-mono);
-}
-
-.experience-item__description {
-  max-width: 720px;
-  margin: 10px 0 0;
-  color: var(--color-text-muted);
+  font-size: 0.88rem;
 }
 
 /* Projects */
@@ -613,7 +556,7 @@ body.nav-menu-open {
     padding-bottom: 72px;
   }
 
-  .about__list {
+  .exploring {
     padding-top: 24px;
     padding-left: 0;
     border-top: 1px solid var(--color-border);

@@ -23,7 +23,7 @@ async function check() {
     await assertIncludes(relativePath, page, 'application/ld+json');
     await assertIncludes(relativePath, page, locale === "de" ? "Saarland, Deutschland" : "Saarland, Germany");
     await assertIncludes(relativePath, page, 'class="project-entry"');
-    await assertIncludes(relativePath, page, 'class="experience-item"');
+    await assertIncludes(relativePath, page, 'class="exploring-item"');
     await assertIncludes(relativePath, page, 'cert-card');
     if (page.includes('id="projects-grid" class="projects-grid"></div>')) {
       throw new Error(relativePath + " contains an unrendered projects mount.");

@@ -26,8 +26,8 @@
       </button>
       <nav id="nav-links" class="nav__links">
         <a href="#about" data-i18n-key="nav.about">Über mich</a>
+        <a href="#work" data-i18n-key="nav.work">Hintergrund</a>
         <a href="#projects" data-i18n-key="nav.projects">Projekte</a>
-        <a href="#experience" data-i18n-key="nav.experience">Erfahrung</a>
         <a href="#credentials" data-i18n-key="nav.credentials">Zertifizierungen</a>
         <a href="#contact" data-i18n-key="nav.contact">Kontakt</a>
         <div id="lang-toggle" class="lang-toggle" data-i18n-key="nav.langToggleAria" data-i18n-attr="aria-label"></div>
@@ -65,44 +65,31 @@
               Ich entwickle Daten- und KI-Lösungen an der Schnittstelle von Architektur, Betrieb und Governance. Entscheidend ist für mich nicht nur, dass ein System funktioniert, sondern dass Datenflüsse, Zugriffe und Weiterentwicklung von Anfang an nachvollziehbar sind.
             </p>
             <p class="about__personal" data-i18n-key="about.personal">
-              Neue Technologien erschließe ich praktisch, in eigenen Projekten und beim Self-Hosting. So prüfe ich nicht nur, was ein Werkzeug verspricht, sondern auch, wie es sich integriert und wo seine Grenzen liegen. Beim Schwimmen und Wandern finde ich den Ausgleich dazu.
+              Die meisten meiner Nebenprojekte starten mit derselben Frage: Könnte ich das komplett selbst betreiben? Meistens ja, mit ein paar schmerzhaften Umwegen dazwischen.
             </p>
             <ul class="principles-list">
-              <li data-i18n-key="about.principleOne">Datenflüsse und Betriebswege so gestalten, dass Änderungen und Fehler sichtbar bleiben.</li>
-              <li data-i18n-key="about.principleTwo">Zugriffe und Governance als Architekturentscheidungen behandeln.</li>
-              <li data-i18n-key="about.principleThree">Neue Technologien dort einsetzen, wo sie eine konkrete Anforderung besser lösen.</li>
+              <li data-i18n-key="about.principleOne">Wenn etwas kaputtgeht, will ich das sofort sehen, nicht drei Wochen später in einem Log entdecken.</li>
+              <li data-i18n-key="about.principleTwo">Zugriffe und Governance denke ich von Anfang an mit, nicht als Nachtrag, wenn es schon zu spät ist.</li>
+              <li data-i18n-key="about.principleThree">Ich probiere neue Tools gerne aus, aber im Projekt landen nur die, die ein echtes Problem lösen.</li>
             </ul>
           </div>
-          <dl class="about__list">
-            <div>
-              <dt data-i18n-key="about.educationHeading">Ausbildung</dt>
-              <dd class="about__degree">
-                <span class="about__degree-main">
-                  <span class="about__degree-icon issuer-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M12 3 2 8l10 5 10-5-10-5z" />
-                      <path d="M6 10.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5" />
-                    </svg>
-                  </span>
-                  <span data-i18n-key="about.educationMaster">M.Sc. Artificial Intelligence &amp; Data Science</span>
-                </span>
-                <span class="about__degree-years">2022 - 2025</span>
-              </dd>
-              <dd class="about__degree">
-                <span class="about__degree-main">
-                  <span class="about__degree-icon issuer-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M12 3 2 8l10 5 10-5-10-5z" />
-                      <path d="M6 10.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5" />
-                    </svg>
-                  </span>
-                  <span data-i18n-key="about.educationBachelor">B.Sc. Wirtschaftsinformatik</span>
-                </span>
-                <span class="about__degree-years">2018 - 2022</span>
-              </dd>
-            </div>
-          </dl>
+          <div class="exploring">
+            <h3 class="exploring__heading" data-i18n-key="about.exploring.heading">Womit ich mich gerade beschäftige</h3>
+            <ul id="exploring-list" class="exploring-list"></ul>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <h2 class="section-heading" data-i18n-key="work.heading">Wo ich herkomme</h2>
+        <p class="section-intro" data-i18n-key="work.story1"></p>
+        <p class="section-intro" data-i18n-key="work.story2"></p>
+        <p class="section-intro" data-i18n-key="work.story3"></p>
+        <p class="section-intro" data-i18n-key="work.story4"></p>
+        <p class="section-intro" data-i18n-key="work.outro">Heute arbeite ich Vollzeit als BI &amp; Data Science Consultant bei PREVISIONZ in Saarbrücken.</p>
+        <a id="resume-download-link-work" class="project-entry__link" data-i18n-key="work.resumeLinkLabel" download target="_blank" rel="noopener">Vollständiger Lebenslauf -&gt;</a>
       </div>
     </section>
 
@@ -111,13 +98,6 @@
         <h2 class="section-heading" data-i18n-key="projects.heading">Projekte</h2>
         <p class="section-intro" data-i18n-key="projects.intro">Die Projekte zeigen, wie ich enterprise-orientierte Daten- und KI-Architekturen von der Integration bis zum Betrieb umsetze. Im Fokus stehen klare Datenflüsse, kontrollierte Zugriffe, wiederholbare Bereitstellung und das praktische Erproben neuer Technologien.</p>
         <div id="projects-grid" class="projects-grid"></div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <h2 class="section-heading" data-i18n-key="experience.heading">Erfahrung</h2>
-        <ul id="experience-list" class="experience-list"></ul>
       </div>
     </section>
 
@@ -173,7 +153,7 @@
   </footer>
 
   <script src="data/profile.js" defer></script>
-  <script src="data/experience.js" defer></script>
+  <script src="data/exploring.js" defer></script>
   <script src="data/projects.js" defer></script>
   <script src="data/certifications.js" defer></script>
   <script src="i18n/de.js" defer></script>

@@ -71,71 +71,49 @@ window.APP = window.APP || { data: {}, i18n: {} };
     });
   }
 
-  function formatDate(dateStr) {
-    var parts = dateStr.split("-");
-    return parts[1] + "/" + parts[0];
-  }
-
-  function renderExperience() {
-    var mount = document.getElementById("experience-list");
+  function renderExploring() {
+    var mount = document.getElementById("exploring-list");
     if (!mount) return;
     var t = APP.i18n.t;
 
-    var experience = APP.data.experience.slice().sort(byOrder);
+    var items = APP.data.exploring.slice().sort(byOrder);
     mount.innerHTML = "";
 
-    experience.forEach(function (job) {
+    items.forEach(function (entry) {
       var item = document.createElement("li");
-      item.className = "experience-item";
+      item.className = "exploring-item";
 
-      var header = document.createElement("div");
-      header.className = "experience-item__header";
+      var icon = document.createElement("span");
+      icon.className = "exploring-item__icon issuer-icon";
+      icon.innerHTML = APP.icons.getIcon(entry.icon);
+      item.appendChild(icon);
 
-      var role = t("experience." + job.id + ".role");
-      var roleCompany = document.createElement("span");
-      roleCompany.className = "experience-item__role";
-      roleCompany.textContent = role + " - " + job.company;
-      header.appendChild(roleCompany);
+      var text = document.createElement("span");
+      text.className = "exploring-item__text";
 
-      item.appendChild(header);
+      var title = document.createElement("span");
+      title.className = "exploring-item__title";
+      title.textContent = t("about.exploring." + entry.id + ".title");
+      text.appendChild(title);
 
-      var meta = document.createElement("div");
-      meta.className = "experience-item__meta";
+      var description = document.createElement("span");
+      description.className = "exploring-item__description";
+      description.textContent = t("about.exploring." + entry.id + ".description");
+      text.appendChild(description);
 
-      var dates = document.createElement("span");
-      dates.className = "experience-item__dates";
-      var dateIcon = document.createElement("span");
-      dateIcon.className = "issuer-icon";
-      dateIcon.innerHTML = APP.icons.getIcon("calendar");
-      dates.appendChild(dateIcon);
-      var dateLabel = document.createElement("span");
-      var end = job.endDate ? formatDate(job.endDate) : t("experience.present");
-      dateLabel.textContent = formatDate(job.startDate) + " - " + end;
-      dates.appendChild(dateLabel);
-      meta.appendChild(dates);
-
-      var location = document.createElement("span");
-      location.className = "experience-item__location";
-      location.textContent = t("experience." + job.id + ".location");
-      meta.appendChild(location);
-
-      item.appendChild(meta);
-
-      var description = document.createElement("p");
-      description.className = "experience-item__description";
-      description.textContent = t("experience." + job.id + ".description");
-      item.appendChild(description);
-
+      item.appendChild(text);
       mount.appendChild(item);
     });
   }
 
   function renderResumeLink() {
-    var link = document.getElementById("resume-download-link");
-    if (!link) return;
     var resume = APP.data.profile.resume;
     var lang = document.documentElement.lang;
-    link.href = resume[lang] || resume.en || resume.de;
+    var href = resume[lang] || resume.en || resume.de;
+    ["resume-download-link", "resume-download-link-work"].forEach(function (id) {
+      var link = document.getElementById(id);
+      if (link) link.href = href;
+    });
   }
 
   function buildIssuerIcon(cert) {
@@ -244,12 +222,12 @@ window.APP = window.APP || { data: {}, i18n: {} };
   function initContent() {
     renderProfileBindings();
     renderResumeLink();
-    renderExperience();
+    renderExploring();
     renderProjects();
     renderCertifications();
     window.addEventListener("langchange", function () {
       renderResumeLink();
-      renderExperience();
+      renderExploring();
       renderProjects();
       renderCertifications();
     });

@@ -1,6 +1,6 @@
 # Portfolio Site
 
-Static resume/portfolio page for Alexander Hilberer. Plain HTML/CSS/JS with a small Node.js build step that pre-renders the German and English pages for GitHub Pages.
+Static portfolio page for Alexander Hilberer. Plain HTML/CSS/JS with a small Node.js build step that pre-renders the German and English pages for GitHub Pages.
 
 ## Structure
 
@@ -11,7 +11,7 @@ assets/js/
   i18n.js               # language switching, DOM text swap, persistence
   content.js             # hydrates project/certification/profile data in the browser
   main.js                # init orchestrator
-data/                    # content: profile, experience, projects, certifications
+data/                    # content: profile, exploring, projects, certifications
 i18n/                    # translation dictionaries (de.js default, en.js)
 assets/resume/           # your resume PDFs (not included, see below)
 scripts/build.mjs        # renders / and /en/ into dist/
@@ -27,9 +27,13 @@ Edit `data/projects.js`, add an object with `id`, `title`, `link`, `environment`
 
 Then add matching `projects.<id>.description` and `projects.<id>.highlights.<key>` entries to **both** `i18n/de.js` and `i18n/en.js`. Every project uses the same layout, so no HTML/CSS changes are needed.
 
-## Add a job to Experience
+## Add an "exploring" item
 
-Edit `data/experience.js`, add `{ id, company, startDate: "YYYY-MM", endDate: "YYYY-MM" | null, order }` (`endDate: null` renders as "Present"/"Heute"). `company` is a proper noun and stays in the data file; `role`, `location`, and `description` are language-dependent, so add a matching `experience.<id>.{role, location, description}` entry to **both** `i18n/de.js` and `i18n/en.js`.
+Edit `data/exploring.js`, add `{ id, icon, order }` (`icon` is a key from `assets/js/icons.js`). Then add matching `about.exploring.<id>.title` and `about.exploring.<id>.description` entries to **both** `i18n/de.js` and `i18n/en.js`.
+
+## Update the Work section
+
+`work.heading`, `work.body`, and `work.resumeLinkLabel` in `i18n/de.js`/`i18n/en.js` are plain text, no data file involved. Edit them directly when the day job changes.
 
 ## Add a certification
 

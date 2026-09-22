@@ -8,7 +8,7 @@ const distDir = path.join(rootDir, "dist");
 const siteUrl = "https://hilberer.dev";
 const sourceScripts = [
   "data/profile.js",
-  "data/experience.js",
+  "data/exploring.js",
   "data/projects.js",
   "data/certifications.js",
   "i18n/de.js",
@@ -43,11 +43,6 @@ function flatten(source, prefix = "") {
     }
     return [[pathKey, value]];
   });
-}
-
-function formatDate(date) {
-  const [year, month] = date.split("-");
-  return month + "/" + year;
 }
 
 async function loadAppData() {
@@ -94,19 +89,19 @@ function renderProjects(app, locale) {
     .join("");
 }
 
-function renderExperience(app, locale) {
+function renderExploring(app, locale) {
   const t = function (key) { return getValue(app.i18n[locale], key); };
-  return app.data.experience
+  return app.data.exploring
     .slice()
     .sort(function (left, right) { return left.order - right.order; })
-    .map(function (job) {
-      const endDate = job.endDate ? formatDate(job.endDate) : t("experience.present");
+    .map(function (entry) {
       return [
-        '<li class="experience-item">',
-        '<div class="experience-item__header"><span class="experience-item__role">' + escapeHtml(t("experience." + job.id + ".role")) + " - " + escapeHtml(job.company) + "</span></div>",
-        '<div class="experience-item__meta"><span class="experience-item__dates"><span class="issuer-icon">' + app.icons.getIcon("calendar") + "</span><span>" + escapeHtml(formatDate(job.startDate) + " - " + endDate) + "</span></span>",
-        '<span class="experience-item__location">' + escapeHtml(t("experience." + job.id + ".location")) + "</span></div>",
-        '<p class="experience-item__description">' + escapeHtml(t("experience." + job.id + ".description")) + "</p>",
+        '<li class="exploring-item">',
+        '<span class="exploring-item__icon issuer-icon">' + app.icons.getIcon(entry.icon) + "</span>",
+        '<span class="exploring-item__text">',
+        '<span class="exploring-item__title">' + escapeHtml(t("about.exploring." + entry.id + ".title")) + "</span>",
+        '<span class="exploring-item__description">' + escapeHtml(t("about.exploring." + entry.id + ".description")) + "</span>",
+        "</span>",
         "</li>"
       ].join("");
     })
@@ -265,9 +260,10 @@ function renderPage(template, app, locale) {
   html = replaceBindingHref(html, "profile.linkedinUrl", profile.linkedinUrl);
   html = replaceBindingHref(html, "profile.emailHref", "mailto:" + profile.email);
   html = replaceHrefById(html, "resume-download-link", assetPrefix + profile.resume[locale]);
+  html = replaceHrefById(html, "resume-download-link-work", assetPrefix + profile.resume[locale]);
   html = html.replace(/<div id="lang-toggle"[\s\S]*?<\/div>/, renderLanguageToggle(locale, labels));
   html = replaceMount(html, "projects-grid", renderProjects(app, locale));
-  html = replaceMount(html, "experience-list", renderExperience(app, locale));
+  html = replaceMount(html, "exploring-list", renderExploring(app, locale));
   html = replaceMount(html, "certifications-grid", renderCertifications(app, locale, primary));
   html = replaceMount(html, "supporting-certifications-grid", renderCertifications(app, locale, supporting));
   html = replaceMount(html, "retired-certifications-grid", renderCertifications(app, locale, retired));
