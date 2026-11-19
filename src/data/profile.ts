@@ -10,8 +10,3 @@ export const profile = {
     en: "/assets/resume/Alexander_Hilberer_Resume.pdf"
   } satisfies Record<LangCode, string>
 };
-
-export const education = [
-  { id: "educationMaster", years: "2022 - 2025" },
-  { id: "educationBachelor", years: "2018 - 2022" }
-] as const;

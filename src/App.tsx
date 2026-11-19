@@ -2,7 +2,7 @@ import { I18nextProvider } from "react-i18next";
 import type { i18n } from "i18next";
 import type { LangCode } from "./i18n/config";
 import { Header } from "./components/Header";
-import { About, Contact, Credentials, Experience, Footer, Hero, Projects } from "./components/Sections";
+import { About, Contact, Credentials, Footer, Hero, Projects, Work } from "./components/Sections";
 
 export function App({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
   return (
@@ -11,8 +11,8 @@ export function App({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
       <main>
         <Hero lang={lang} />
         <About />
+        <Work lang={lang} />
         <Projects />
-        <Experience lang={lang} />
         <Credentials />
         <Contact />
       </main>

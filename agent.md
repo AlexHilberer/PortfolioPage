@@ -10,8 +10,8 @@ This repository is Alexander Hilberer's portfolio site. It is a React + TypeScri
 - `src/main.tsx` hydrates the prerendered page; `src/entry-server.tsx` exports `render(lang)` for the prerender.
 - `src/i18n/config.ts` holds `LANGUAGES`, the single source of truth for languages and URL paths. `src/i18n/index.ts` creates the i18next instances.
 - `src/locales/<code>.json` contain all language-dependent copy; German is the default.
-- `src/data/` holds language-neutral content (profile, education years, experience, projects, certifications).
-- `src/components/` contains the UI: `Header`, `LanguageSwitcher`, `Sections` (Hero, About, Projects, Experience, Credentials, Contact, Footer) and `Icons`.
+- `src/data/` holds language-neutral content (profile, exploring items, projects, certifications).
+- `src/components/` contains the UI: `Header`, `LanguageSwitcher`, `Sections` (Hero, About, Work, Projects, Credentials, Contact, Footer) and `Icons`.
 - `src/styles/` is imported in this order: `base.css`, `theme.css`, `layout.css`, `components.css`.
 - `public/` is copied to the site root: `favicon.svg` and `assets/resume/` (language-specific PDFs).
 - `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and `404.html`. `scripts/check-build.ts` verifies locale parity and the generated output.
@@ -38,9 +38,9 @@ Add records to `src/data/projects.ts` with `id`, `title`, `link`, `environment` 
 - Use at most five technology tags per project (the check enforces this). Pick the technologies that convey the main architectural decisions, not every dependency.
 - Describe personal projects as reference implementations or demonstrations where appropriate. Do not imply production scale, enterprise readiness, customer use or operational guarantees that the repository cannot demonstrate.
 
-### Experience
+### Exploring and Work
 
-Add records to `src/data/experience.ts` with `startDate` and `endDate` as `YYYY-MM` (`endDate: null` for an ongoing role). Add `experience.<id>.{role,location,description}` to every locale file. Dates are formatted with `Intl.DateTimeFormat` for the active language.
+Add "exploring" items to `src/data/exploring.ts` (`id`, `icon` from `Icons.tsx`, `order`) with matching `about.exploring.<id>.{title,description}` in every locale file. The Work section ("Where I come from") is plain text under `work.*` in the locale files; the résumé link in it uses `profile.resume[lang]`.
 
 ### Certifications
 
@@ -48,7 +48,7 @@ Add records to `src/data/certifications.ts` following the `Certification` type: 
 
 ### Translations
 
-- Keep the key structure identical in every `src/locales/*.json`. `npm run check` fails on missing, extra or empty keys, and on missing project or experience keys.
+- Keep the key structure identical in every `src/locales/*.json`. `npm run check` fails on missing, extra or empty keys, and on missing project or exploring keys.
 - To add a language: add it to `LANGUAGES` (`src/i18n/config.ts`), create `src/locales/<code>.json`, register it in `src/i18n/index.ts`, add `resume.<code>` in `src/data/profile.ts` and the PDF in `public/assets/resume/`.
 - Keep `meta.title`, `meta.description`, `meta.jobTitle` and `meta.knowsAbout` current; the prerender uses them for the title, description, Open Graph tags and JSON-LD.
 

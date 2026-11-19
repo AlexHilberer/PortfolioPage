@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { LANGUAGES, SITE_URL, absoluteUrl } from "../src/i18n/config";
 import { locales } from "../src/i18n";
-import { experience } from "../src/data/experience";
+import { exploring } from "../src/data/exploring";
 import { projects } from "../src/data/projects";
 import { profile } from "../src/data/profile";
 
@@ -40,7 +40,7 @@ for (const { code } of LANGUAGES) {
       ...p.highlights.map((h) => `projects.${p.id}.highlights.${h}`),
       `projects.environments.${p.environment}`
     ]),
-    ...experience.flatMap((j) => ["role", "location", "description"].map((f) => `experience.${j.id}.${f}`))
+    ...exploring.flatMap((e) => [`about.exploring.${e.id}.title`, `about.exploring.${e.id}.description`])
   ];
   for (const key of dynamic) expect(keys.has(key), `locales/${code}.json is missing dynamic key "${key}"`);
 }
@@ -62,7 +62,7 @@ for (const { code, path: urlPath } of LANGUAGES) {
     'hreflang="x-default"',
     locales[code].hero.location,
     'class="project-entry"',
-    'class="experience-item"',
+    'class="exploring-item"',
     "cert-card",
     `href="${profile.resume[code]}"`
   ];

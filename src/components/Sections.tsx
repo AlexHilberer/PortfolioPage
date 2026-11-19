@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { certifications, type Certification } from "../data/certifications";
-import { experience } from "../data/experience";
-import { education, profile } from "../data/profile";
+import { exploring } from "../data/exploring";
+import { profile } from "../data/profile";
 import { projects } from "../data/projects";
 import type { LangCode } from "../i18n/config";
 import {
   GithubIcon,
-  GradIcon,
   IssuerIcon,
   LinkedinIcon,
   MailIcon,
@@ -14,15 +13,6 @@ import {
 } from "./Icons";
 
 const byOrder = <T extends { order: number }>(a: T, b: T) => a.order - b.order;
-
-function formatMonth(value: string, lang: LangCode): string {
-  const [year, month] = value.split("-").map(Number);
-  return new Intl.DateTimeFormat(lang, {
-    month: "2-digit",
-    year: "numeric",
-    timeZone: "UTC"
-  }).format(new Date(Date.UTC(year, month - 1, 1)));
-}
 
 export function Hero({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();
@@ -56,6 +46,7 @@ export function Hero({ lang }: { lang: LangCode }) {
 
 export function About() {
   const { t } = useTranslation();
+  const tx = (key: string) => t(key as never) as string;
   return (
     <section id="about">
       <div className="container">
@@ -70,20 +61,22 @@ export function About() {
               <li>{t("about.principleThree")}</li>
             </ul>
           </div>
-          <dl className="about__list">
-            <div>
-              <dt>{t("about.educationHeading")}</dt>
-              {education.map((item) => (
-                <dd className="about__degree" key={item.id}>
-                  <span className="about__degree-main">
-                    <GradIcon />
-                    <span>{t(`about.${item.id}`)}</span>
+          <div className="exploring">
+            <h3 className="exploring__heading">{t("about.exploring.heading")}</h3>
+            <ul className="exploring-list">
+              {[...exploring].sort(byOrder).map((item) => (
+                <li className="exploring-item" key={item.id}>
+                  <span className="exploring-item__icon issuer-icon">
+                    <IssuerIcon name={item.icon} bare />
                   </span>
-                  <span className="about__degree-years">{item.years}</span>
-                </dd>
+                  <span className="exploring-item__text">
+                    <span className="exploring-item__title">{tx(`about.exploring.${item.id}.title`)}</span>
+                    <span className="exploring-item__description">{tx(`about.exploring.${item.id}.description`)}</span>
+                  </span>
+                </li>
               ))}
-            </div>
-          </dl>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -130,35 +123,20 @@ export function Projects() {
   );
 }
 
-export function Experience({ lang }: { lang: LangCode }) {
+export function Work({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();
-  const tx = (key: string) => t(key as never) as string;
   return (
-    <section id="experience">
+    <section id="work">
       <div className="container">
-        <h2 className="section-heading">{t("experience.heading")}</h2>
-        <ul className="experience-list">
-          {[...experience].sort(byOrder).map((job) => (
-            <li className="experience-item" key={job.id}>
-              <div className="experience-item__header">
-                <span className="experience-item__role">
-                  {tx(`experience.${job.id}.role`)} - {job.company}
-                </span>
-              </div>
-              <div className="experience-item__meta">
-                <span className="experience-item__dates">
-                  <IssuerIcon name="calendar" />
-                  <span>
-                    {formatMonth(job.startDate, lang)} -{" "}
-                    {job.endDate ? formatMonth(job.endDate, lang) : t("experience.present")}
-                  </span>
-                </span>
-                <span className="experience-item__location">{tx(`experience.${job.id}.location`)}</span>
-              </div>
-              <p className="experience-item__description">{tx(`experience.${job.id}.description`)}</p>
-            </li>
-          ))}
-        </ul>
+        <h2 className="section-heading">{t("work.heading")}</h2>
+        <p className="section-intro">{t("work.story1")}</p>
+        <p className="section-intro">{t("work.story2")}</p>
+        <p className="section-intro">{t("work.story3")}</p>
+        <p className="section-intro">{t("work.story4")}</p>
+        <p className="section-intro">{t("work.outro")}</p>
+        <a className="project-entry__link" href={profile.resume[lang]} download target="_blank" rel="noopener">
+          {t("work.resumeLinkLabel")}
+        </a>
       </div>
     </section>
   );

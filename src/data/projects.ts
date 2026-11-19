@@ -20,7 +20,7 @@ export const projects = [
   {
     id: "onprem-mlops",
     title: "On-Prem Machine Learning Operations",
-    link: "https://github.com/AlexHilberer/OnPremise-Machine-Learning-Operations",
+    link: "https://github.com/AlexHilberer/On-Prem-Machine-Learning-Operations",
     environment: "onprem",
     highlights: ["lifecycle", "monitoring", "delivery"],
     tech: ["Apache Airflow", "MLflow", "PostgreSQL", "SHAP", "scikit-learn"],

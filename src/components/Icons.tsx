@@ -9,7 +9,7 @@ const stroke = {
   strokeLinejoin: "round"
 } as const;
 
-export type IconName = "azure" | "gcp" | "onprem" | "calendar";
+export type IconName = "azure" | "gcp" | "onprem" | "calendar" | "dataplatforms" | "aisystems" | "mlops" | "cloud";
 
 const ICONS: Record<IconName, ReactElement> = {
   azure: (
@@ -30,6 +30,33 @@ const ICONS: Record<IconName, ReactElement> = {
       <rect x="3" y="16" width="18" height="4.5" rx="1" />
     </svg>
   ),
+  dataplatforms: (
+    <svg {...common} fill="currentColor">
+      <path d="M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3z" />
+      <path d="M4 9.5v3c0 1.7 3.6 3 8 3s8-1.3 8-3v-3c0 1.7-3.6 3-8 3s-8-1.3-8-3z" />
+      <path d="M4 15.5V18c0 1.7 3.6 3 8 3s8-1.3 8-3v-2.5c0 1.7-3.6 3-8 3s-8-1.3-8-3z" />
+    </svg>
+  ),
+  aisystems: (
+    <svg {...common} fill="currentColor">
+      <rect x="8" y="8" width="8" height="8" rx="1.5" />
+      <rect x="10.5" y="2" width="3" height="4" rx="1" />
+      <rect x="10.5" y="18" width="3" height="4" rx="1" />
+      <rect x="2" y="10.5" width="4" height="3" rx="1" />
+      <rect x="18" y="10.5" width="4" height="3" rx="1" />
+    </svg>
+  ),
+  mlops: (
+    <svg {...common} fill="currentColor">
+      <path d="M12 5V2L8 5.5 12 9V6a5.5 5.5 0 0 1 5.4 6.6l1.9.5A7.5 7.5 0 0 0 12 5z" />
+      <path d="M12 19v3l4-3.5L12 15v3a5.5 5.5 0 0 1-5.4-6.6l-1.9-.5A7.5 7.5 0 0 0 12 19z" />
+    </svg>
+  ),
+  cloud: (
+    <svg {...common} fill="currentColor">
+      <path d="M7 18a5 5 0 0 1-.4-9.98 6 6 0 0 1 11.4 1.98A4.5 4.5 0 0 1 17.5 18H7z" />
+    </svg>
+  ),
   calendar: (
     <svg {...common} {...stroke}>
       <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -38,8 +65,8 @@ const ICONS: Record<IconName, ReactElement> = {
   )
 };
 
-export function IssuerIcon({ name }: { name: IconName }) {
-  return <span className="issuer-icon">{ICONS[name]}</span>;
+export function IssuerIcon({ name, bare = false }: { name: IconName; bare?: boolean }) {
+  return bare ? ICONS[name] : <span className="issuer-icon">{ICONS[name]}</span>;
 }
 
 export const PinIcon = () => (
@@ -47,15 +74,6 @@ export const PinIcon = () => (
     <path d="M20 10c0 5.25-8 11-8 11S4 15.25 4 10a8 8 0 1 1 16 0Z" />
     <circle cx="12" cy="10" r="2.5" />
   </svg>
-);
-
-export const GradIcon = () => (
-  <span className="about__degree-icon issuer-icon">
-    <svg {...common} {...stroke}>
-      <path d="M12 3 2 8l10 5 10-5-10-5z" />
-      <path d="M6 10.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5" />
-    </svg>
-  </span>
 );
 
 export const GithubIcon = () => (

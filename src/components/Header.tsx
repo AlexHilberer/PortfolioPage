@@ -4,7 +4,7 @@ import { getLanguage, type LangCode } from "../i18n/config";
 import { profile } from "../data/profile";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
-const LINKS = ["about", "projects", "experience", "credentials", "contact"] as const;
+const LINKS = ["about", "work", "projects", "credentials", "contact"] as const;
 
 export function Header({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();

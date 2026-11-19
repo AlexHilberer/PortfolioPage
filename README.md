@@ -1,6 +1,6 @@
 # Portfolio Site
 
-Resume/portfolio page for Alexander Hilberer, built with React, TypeScript and Vite. `react-i18next` handles the translations. A build step prerenders one static HTML page per language for GitHub Pages, so crawlers get the full content without running JavaScript and React hydrates it in the browser.
+Portfolio page for Alexander Hilberer, built with React, TypeScript and Vite. `react-i18next` handles the translations. A build step prerenders one static HTML page per language for GitHub Pages, so crawlers get the full content without running JavaScript and React hydrates it in the browser.
 
 ## Structure
 
@@ -15,7 +15,7 @@ src/
   i18n/config.ts          # LANGUAGES: the single list of supported languages
   i18n/index.ts           # i18next setup (typed keys, SSR-safe instances)
   locales/{de,en}.json    # all language-dependent copy (de is the default)
-  data/                   # language-neutral content: profile, experience, projects, certifications
+  data/                   # language-neutral content: profile, exploring, projects, certifications
   styles/                 # base -> theme -> layout -> components
 scripts/prerender.ts      # writes dist/index.html, dist/en/index.html, sitemap.xml, robots.txt, 404.html
 scripts/check-build.ts    # checks locale parity and the generated pages
@@ -38,7 +38,8 @@ German is published at `/` and English at `/en/`. The language switcher consists
 ## Add content
 
 - **Project:** add an object to `src/data/projects.ts` (`id`, `title`, `link`, `environment` of `"onprem" | "azure" | "gcp"`, three `highlights`, at most five `tech` tags, `order`), then add `projects.<id>.description` and `projects.<id>.highlights.<key>` to **every** locale file.
-- **Experience:** add `{ id, company, startDate: "YYYY-MM", endDate: "YYYY-MM" | null, order }` to `src/data/experience.ts` and `experience.<id>.{role,location,description}` to every locale file.
+- **"Exploring" item:** add `{ id, icon, order }` to `src/data/exploring.ts` (`icon` must exist in `src/components/Icons.tsx`) and `about.exploring.<id>.{title,description}` to every locale file.
+- **Work / background text:** `work.*` in the locale files is plain text, so edit it there when your situation changes.
 - **Certification:** add a record to `src/data/certifications.ts` (see the `Certification` type). Certification names and codes are proper nouns and are not translated.
 
 ## Develop and build
