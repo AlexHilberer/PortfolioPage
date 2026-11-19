@@ -68,7 +68,7 @@
     "story3": "I fell flat on my face early on, the math was a lot harder than I expected, but with a few too many sleepless nights I caught up.",
     "story4": "Around the same time I started as a working student at PREVISIONZ and saw for the first time what enterprise-grade data platforms actually look like. At some point it clicked: if this works in the cloud, I can probably pull it off myself too, with open source and my own hardware. That is exactly where my first personal projects came from.",
     "outro": "Today I work full time as a BI & Data Science Consultant at PREVISIONZ in Saarbrücken, building cloud platforms and ML workflows for clients.",
-    "resumeLinkLabel": "Full résumé ->"
+    "resumeLinkLabel": "Full résumé"
   },
   "certifications": {
     "heading": "Credentials",
@@ -129,7 +129,6 @@
     "title": "Page not found | Alexander Hilberer",
     "heading": "Page not found",
     "text": "This page does not exist (anymore). The home page might help.",
-    "home": "Back to the home page",
-    "terminalError": "No such file or directory"
+    "home": "Back to the home page"
   }
 }

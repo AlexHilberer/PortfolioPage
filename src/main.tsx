@@ -4,6 +4,7 @@ import "./styles/base.css";
 import "./styles/theme.css";
 import "./styles/layout.css";
 import "./styles/components.css";
+import "./styles/logo.css";
 import { App, NotFoundApp } from "./App";
 import { createI18n } from "./i18n";
 import { LANGUAGES, LANG_STORAGE_KEY, isLangCode, langFromPath, getLanguage } from "./i18n/config";
@@ -34,7 +35,7 @@ if (container.hasAttribute("data-not-found")) {
   document.title = i18n.t("notFound.title");
   createRoot(container).render(
     <StrictMode>
-      <NotFoundApp lang={lang} i18n={i18n} path={window.location.pathname} />
+      <NotFoundApp lang={lang} i18n={i18n} />
     </StrictMode>
   );
 } else {

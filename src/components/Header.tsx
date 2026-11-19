@@ -3,13 +3,38 @@ import { useTranslation } from "react-i18next";
 import { getLanguage, type LangCode } from "../i18n/config";
 import { profile } from "../data/profile";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LogoMark } from "./LogoMark";
 
 const LINKS = ["about", "work", "projects", "credentials", "contact"] as const;
+
+/** Highlights the nav entry of the section that is currently in the middle of the screen. */
+function useActiveSection(): string | null {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+    const elements = ["top", ...LINKS]
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+    if (elements.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id === "top" ? null : entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+  return active;
+}
 
 export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const active = useActiveSection();
 
   useEffect(() => {
     document.body.classList.toggle("nav-menu-open", open);
@@ -44,6 +69,7 @@ export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: str
     <header className="nav" ref={headerRef}>
       <div className="container nav__inner">
         <a className="nav__brand" href={getLanguage(lang).path}>
+          <LogoMark uid="nav" className="nav__logo" />
           <span>{profile.name}</span>
         </a>
         <button
@@ -67,7 +93,7 @@ export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: str
           }}
         >
           {LINKS.map((link) => (
-            <a key={link} href={linkBase + "#" + link}>
+            <a key={link} href={linkBase + "#" + link} aria-current={active === link ? "location" : undefined}>
               {t(`nav.${link}`)}
             </a>
           ))}

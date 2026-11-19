@@ -94,3 +94,10 @@ export const MailIcon = () => (
     <path d="m3 7 9 6 9-6" />
   </svg>
 );
+
+export const ArrowIcon = () => (
+  <svg {...common} {...stroke} className="icon-arrow">
+    <path d="M5 12h14" />
+    <path d="m13 6 6 6-6 6" />
+  </svg>
+);

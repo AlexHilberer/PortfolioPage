@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
 html,
 body {
   margin: 0;
@@ -13,7 +18,7 @@ body {
 body {
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -22,8 +27,10 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-mono);
-  line-height: 1.25;
+  font-family: var(--font-sans);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   margin: 0 0 0.5em;
 }
 
@@ -55,7 +62,8 @@ button {
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 ::selection {
@@ -75,4 +83,10 @@ button {
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

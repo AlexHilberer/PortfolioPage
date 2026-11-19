@@ -1,61 +1,136 @@
 .container {
+  position: relative;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 section {
-  padding: 88px 0;
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  padding: 96px 0;
 }
 
-section:last-of-type {
-  border-bottom: none;
+/* ---- The spine: one line with a node per section, like the logo's ring ---- */
+section:not(.hero) > .container {
+  padding-left: 80px;
+}
+
+section:not(.hero) > .container::before {
+  position: absolute;
+  top: -96px;
+  bottom: -96px;
+  left: 34px;
+  width: 2px;
+  background: var(--color-accent-line);
+  content: "";
+}
+
+/* the line fades in below the hero and ends at the last node */
+#about > .container::before {
+  background: linear-gradient(to bottom, transparent, var(--color-accent-line) 120px);
+}
+
+#contact > .container::before {
+  bottom: auto;
+  height: 134px;
 }
 
 .section-heading {
-  font-size: 1.6rem;
-  letter-spacing: -0.03em;
+  position: relative;
+  margin-bottom: 0.55em;
   color: var(--color-text);
-  margin-bottom: 0.65em;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
 .section-heading::before {
-  margin-right: 0.45em;
-  color: var(--color-accent);
-  content: ">";
-  font-family: var(--font-mono);
-  font-size: 0.8em;
-  vertical-align: 0.08em;
+  position: absolute;
+  top: 0.3em;
+  left: -57px;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 0 0 6px var(--color-bg), 0 0 20px rgba(69, 182, 168, 0.5);
+  content: "";
+}
+
+/* the logo's wave as an underline */
+.section-heading::after {
+  display: block;
+  width: 96px;
+  height: 14px;
+  margin-top: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14' viewBox='0 0 96 14'%3E%3Cpath d='M2 7C12 0 24 14 36 7S60 0 72 7 90 12 94 7' fill='none' stroke='%2345b6a8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat;
+  content: "";
+}
+
+.section-intro {
+  max-width: 720px;
+  margin-bottom: 40px;
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 48px;
+  gap: 28px;
 }
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 56px;
   align-items: start;
+  margin-top: 28px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 760px) {
   section {
     padding: 64px 0;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
+  .container {
+    padding: 0 20px;
+  }
+
+  /* no spine on small screens: the node sits in front of the heading instead */
+  section:not(.hero) > .container {
+    padding-left: 20px;
+  }
+
+  section:not(.hero) > .container::before {
+    display: none;
+  }
+
+  .section-heading::before {
+    position: static;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 12px;
+    border-width: 2.5px;
+    box-shadow: 0 0 14px rgba(69, 182, 168, 0.5);
+    vertical-align: 0.1em;
   }
 
   .projects-grid {

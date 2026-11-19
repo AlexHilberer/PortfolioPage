@@ -5,39 +5,46 @@ import { profile } from "../data/profile";
 import { projects } from "../data/projects";
 import type { LangCode } from "../i18n/config";
 import {
+  ArrowIcon,
   GithubIcon,
   IssuerIcon,
   LinkedinIcon,
   MailIcon,
   PinIcon
 } from "./Icons";
+import { LogoMark } from "./LogoMark";
 
 const byOrder = <T extends { order: number }>(a: T, b: T) => a.order - b.order;
 
 export function Hero({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();
   return (
-    <section className="hero">
-      <div className="container">
-        <h1 className="hero__name">{profile.name}</h1>
-        <p className="hero__role">{t("hero.role")}</p>
-        <p className="hero__location">
-          <PinIcon />
-          <span>{t("hero.location")}</span>
-        </p>
-        <p className="hero__tagline">{t("hero.tagline")}</p>
-        <div className="hero__actions">
-          <a className="button button--primary" href="#projects">{t("hero.ctaProjects")}</a>
-          <a className="button button--secondary" href="#contact">{t("hero.ctaContact")}</a>
-          <a
-            className="button button--secondary"
-            href={profile.resume[lang]}
-            download
-            target="_blank"
-            rel="noopener"
-          >
-            {t("hero.ctaResume")}
-          </a>
+    <section className="hero" id="top">
+      <div className="container hero__grid">
+        <div className="hero__copy">
+          <p className="hero__role">{t("hero.role")}</p>
+          <h1 className="hero__name">{profile.name}</h1>
+          <p className="hero__location">
+            <PinIcon />
+            <span>{t("hero.location")}</span>
+          </p>
+          <p className="hero__tagline">{t("hero.tagline")}</p>
+          <div className="hero__actions">
+            <a className="button button--primary" href="#projects">{t("hero.ctaProjects")}</a>
+            <a className="button button--secondary" href="#contact">{t("hero.ctaContact")}</a>
+            <a
+              className="button button--secondary"
+              href={profile.resume[lang]}
+              download
+              target="_blank"
+              rel="noopener"
+            >
+              {t("hero.ctaResume")}
+            </a>
+          </div>
+        </div>
+        <div className="hero__art">
+          <LogoMark uid="hero" animated glow decor label={profile.name} />
         </div>
       </div>
     </section>
@@ -66,7 +73,7 @@ export function About() {
             <ul className="exploring-list">
               {[...exploring].sort(byOrder).map((item) => (
                 <li className="exploring-item" key={item.id}>
-                  <span className="exploring-item__icon issuer-icon">
+                  <span className="exploring-item__icon">
                     <IssuerIcon name={item.icon} bare />
                   </span>
                   <span className="exploring-item__text">
@@ -76,6 +83,31 @@ export function About() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STORY = ["story1", "story2", "story3", "story4"] as const;
+
+export function Work({ lang }: { lang: LangCode }) {
+  const { t } = useTranslation();
+  return (
+    <section id="work">
+      <div className="container">
+        <h2 className="section-heading">{t("work.heading")}</h2>
+        <div className="work-steps">
+          {STORY.map((key) => (
+            <p className="work-step" key={key}>{t(`work.${key}`)}</p>
+          ))}
+          <div className="work-step work-step--now">
+            <p>{t("work.outro")}</p>
+            <a className="text-link" href={profile.resume[lang]} download target="_blank" rel="noopener">
+              {t("work.resumeLinkLabel")}
+              <ArrowIcon />
+            </a>
           </div>
         </div>
       </div>
@@ -96,11 +128,11 @@ export function Projects() {
         <div className="projects-grid">
           {[...projects].sort(byOrder).map((project) => (
             <article className="project-entry" key={project.id}>
-              <h3 className="project-entry__title">{project.title}</h3>
               <span className="project-entry__environment">
                 <IssuerIcon name={project.environment} />
                 <span>{t(`projects.environments.${project.environment}`)}</span>
               </span>
+              <h3 className="project-entry__title">{project.title}</h3>
               <p className="project-entry__description">{tx(`projects.${project.id}.description`)}</p>
               <ul className="project-entry__highlights">
                 {project.highlights.map((highlight) => (
@@ -112,31 +144,13 @@ export function Projects() {
                   <li className="tag" key={tech}>{tech}</li>
                 ))}
               </ul>
-              <a className="project-entry__link" href={project.link} target="_blank" rel="noopener noreferrer">
-                {t("projects.linkLabel")} -&gt;
+              <a className="text-link project-entry__link" href={project.link} target="_blank" rel="noopener noreferrer">
+                {t("projects.linkLabel")}
+                <ArrowIcon />
               </a>
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function Work({ lang }: { lang: LangCode }) {
-  const { t } = useTranslation();
-  return (
-    <section id="work">
-      <div className="container">
-        <h2 className="section-heading">{t("work.heading")}</h2>
-        <p className="section-intro">{t("work.story1")}</p>
-        <p className="section-intro">{t("work.story2")}</p>
-        <p className="section-intro">{t("work.story3")}</p>
-        <p className="section-intro">{t("work.story4")}</p>
-        <p className="section-intro">{t("work.outro")}</p>
-        <a className="project-entry__link" href={profile.resume[lang]} download target="_blank" rel="noopener">
-          {t("work.resumeLinkLabel")}
-        </a>
       </div>
     </section>
   );
@@ -201,7 +215,7 @@ export function Contact() {
     <section id="contact">
       <div className="container">
         <h2 className="section-heading">{t("contact.heading")}</h2>
-        <p>{t("contact.intro")}</p>
+        <p className="contact__intro">{t("contact.intro")}</p>
         <div className="contact__links">
           <a className="contact__link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">
             <span className="contact__link-icon"><GithubIcon /></span>
@@ -224,7 +238,8 @@ export function Contact() {
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer" style={{ border: "none", padding: 0 }}>
+      <div className="container footer__inner">
+        <LogoMark uid="foot" className="footer__logo" />
         <span>
           © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name}
         </span>

@@ -83,7 +83,7 @@ for (const { code, path: urlPath } of LANGUAGES) {
 }
 
 // 3. Static assets and the 404 page.
-for (const asset of ["fonts/inter-latin-wght.woff2", "fonts/jetbrains-mono-latin-wght.woff2", OG_IMAGE_PATH.slice(1), "apple-touch-icon.png", "favicon.svg", "favicon.ico"]) {
+for (const asset of ["fonts/inter-latin-wght.woff2", OG_IMAGE_PATH.slice(1), "apple-touch-icon.png", "favicon.svg", "favicon.ico"]) {
   await access(path.join(rootDir, "dist", asset)).catch(() => errors.push(`dist/${asset} is missing`));
 }
 const notFound = await readFile(path.join(rootDir, "dist/404.html"), "utf8");

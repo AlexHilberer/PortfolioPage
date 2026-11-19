@@ -1,19 +1,10 @@
-/* Self-hosted variable fonts (Latin subset, SIL OFL; see public/fonts/LICENSE-*.txt) */
+/* Self-hosted variable font (Latin subset, SIL OFL; see public/fonts/LICENSE-Inter.txt) */
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
   src: url("/fonts/inter-latin-wght.woff2") format("woff2-variations");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-  src: url("/fonts/jetbrains-mono-latin-wght.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -25,18 +16,26 @@
   --color-text: #dbe4ea;
   --color-text-muted: #7c8b96;
   --color-accent: #45b6a8;
+  --color-accent-bright: #6fd5c6;
   --color-accent-soft: rgba(69, 182, 168, 0.12);
+  --color-accent-line: rgba(69, 182, 168, 0.38);
+  --color-on-accent: #04201c;
 
   --font-sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --glow: 0 0 0 1px var(--color-accent-line), 0 0 28px rgba(69, 182, 168, 0.18);
+  --ease: cubic-bezier(0.65, 0, 0.3, 1);
 }
 
 body {
   background-color: var(--color-bg);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image:
+    radial-gradient(900px 520px at 88% -6%, rgba(69, 182, 168, 0.13), transparent 70%),
+    radial-gradient(700px 480px at -8% 38%, rgba(69, 182, 168, 0.06), transparent 70%);
+  background-repeat: no-repeat;
   color: var(--color-text);
 }
