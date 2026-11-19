@@ -1,13 +1,14 @@
 {
   "meta": {
     "title": "Alexander Hilberer | Data & AI Systems Engineer",
-    "description": "Alex Hilberer builds data and AI systems: data platforms, MLOps, agentic AI and a healthy self-hosting habit. Based in Saarland, Germany.",
+    "description": "Alexander Hilberer builds data and AI systems that actually work: data platforms, machine learning, MLOps and cloud. Based in Saarland, Germany.",
     "jobTitle": "Data & AI Systems Engineer",
     "knowsAbout": [
-      "Data Engineering",
+      "Machine Learning",
       "MLOps",
-      "Microsoft Fabric",
-      "Artificial Intelligence"
+      "Cloud-Native Systems",
+      "Data Engineering",
+      "AI Engineering"
     ]
   },
   "nav": {
