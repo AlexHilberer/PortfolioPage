@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getLanguage, type LangCode } from "../i18n/config";
 import { profile } from "../data/profile";
@@ -9,6 +9,7 @@ const LINKS = ["about", "work", "projects", "credentials", "contact"] as const;
 export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     document.body.classList.toggle("nav-menu-open", open);
@@ -25,16 +26,22 @@ export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: str
     const onResize = () => {
       if (window.innerWidth > 760) setOpen(false);
     };
+    // Tapping or clicking anywhere outside the header (the dimmed page) closes the menu.
+    const onPointerDown = (event: PointerEvent) => {
+      if (open && !headerRef.current?.contains(event.target as Node)) setOpen(false);
+    };
     document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("resize", onResize);
     return () => {
       document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("resize", onResize);
     };
   }, [open]);
 
   return (
-    <header className="nav">
+    <header className="nav" ref={headerRef}>
       <div className="container nav__inner">
         <a className="nav__brand" href={getLanguage(lang).path}>
           <span>{profile.name}</span>
