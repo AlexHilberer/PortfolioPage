@@ -70,6 +70,9 @@ for (const { code, path: urlPath } of LANGUAGES) {
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="theme-color"`,
     `rel="apple-touch-icon"`,
+    `href="/favicon.ico"`,
+    `max-image-preview:large`,
+    `"alternateName":["hilberer.dev"]`,
     `rel="preload" href="/fonts/`
   ];
   for (const text of required) expect(page.includes(text), `${file} is missing: ${text}`);
@@ -80,7 +83,7 @@ for (const { code, path: urlPath } of LANGUAGES) {
 }
 
 // 3. Static assets and the 404 page.
-for (const asset of ["fonts/inter-latin-wght.woff2", "fonts/jetbrains-mono-latin-wght.woff2", OG_IMAGE_PATH.slice(1), "apple-touch-icon.png", "favicon.svg"]) {
+for (const asset of ["fonts/inter-latin-wght.woff2", "fonts/jetbrains-mono-latin-wght.woff2", OG_IMAGE_PATH.slice(1), "apple-touch-icon.png", "favicon.svg", "favicon.ico"]) {
   await access(path.join(rootDir, "dist", asset)).catch(() => errors.push(`dist/${asset} is missing`));
 }
 const notFound = await readFile(path.join(rootDir, "dist/404.html"), "utf8");

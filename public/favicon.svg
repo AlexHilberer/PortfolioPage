@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="6" fill="#0b0f14"/>
-  <text x="16" y="22" font-family="monospace" font-size="18" font-weight="700" fill="#45b6a8" text-anchor="middle">&gt;_</text>
+  <g fill="#45b6a8">
+    <path transform="translate(2.857 21.026) scale(0.02162 -0.02162)" d="M76 56V171L366 305Q386 314 405.5 320.5Q425 327 436 329Q425 331 405.0 336.5Q385 342 366 351L76 486V603L524 392V267Z"/>
+    <path transform="translate(15.827 21.026) scale(0.02162 -0.02162)" d="M60 -138V-25H540V-138Z"/>
+  </g>
 </svg>

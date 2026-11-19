@@ -6,7 +6,7 @@ Portfolio page for Alexander Hilberer, built with React, TypeScript and Vite. `r
 
 ```
 index.html                # Vite template with <!--app-head--> / <!--app-html--> placeholders
-public/                   # copied as-is: favicon, apple-touch-icon, og-image-2.png, fonts/, assets/resume/*.pdf
+public/                   # copied as-is: favicon.svg + favicon.ico, apple-touch-icon, og-image-2.png, fonts/, assets/resume/*.pdf
 src/
   main.tsx                # client entry: hydrates the prerendered page
   entry-server.tsx        # render(lang) used by the prerender step

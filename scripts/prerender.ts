@@ -32,6 +32,7 @@ function buildHead(mod: ServerModule, lang: LangCode): string {
         "@type": "WebSite",
         "@id": SITE_URL + "/#website",
         name: mod.profile.name,
+        alternateName: [SITE_URL.replace("https://", "")],
         url: SITE_URL + "/",
         inLanguage: lang
       },
@@ -50,7 +51,7 @@ function buildHead(mod: ServerModule, lang: LangCode): string {
   return [
     `<title>${escapeHtml(meta.title)}</title>`,
     `<meta name="description" content="${escapeHtml(meta.description)}" />`,
-    `<meta name="robots" content="index, follow" />`,
+    `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`,
     `<link rel="canonical" href="${url}" />`,
     ...LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l.code}" href="${absoluteUrl(l.code)}" />`),
     `<link rel="alternate" hreflang="x-default" href="${absoluteUrl(defaultLang)}" />`,
