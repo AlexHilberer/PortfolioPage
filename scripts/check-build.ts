@@ -1,7 +1,7 @@
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { LANGUAGES, SITE_URL, absoluteUrl } from "../src/i18n/config";
+import { LANGUAGES, OG_IMAGE_PATH, SITE_URL, absoluteUrl } from "../src/i18n/config";
 import { locales } from "../src/i18n";
 import { exploring } from "../src/data/exploring";
 import { projects } from "../src/data/projects";
@@ -64,12 +64,31 @@ for (const { code, path: urlPath } of LANGUAGES) {
     'class="project-entry"',
     'class="exploring-item"',
     "cert-card",
-    `href="${profile.resume[code]}"`
+    `href="${profile.resume[code]}"`,
+    `<meta property="og:image" content="${SITE_URL + OG_IMAGE_PATH}" />`,
+    `<meta property="og:site_name"`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="theme-color"`,
+    `rel="apple-touch-icon"`,
+    `rel="preload" href="/fonts/`
   ];
   for (const text of required) expect(page.includes(text), `${file} is missing: ${text}`);
   expect(page.includes(`<title>${meta.title.replaceAll("&", "&amp;")}</title>`), `${file} has the wrong <title>`);
+  expect(!page.includes("fonts.googleapis.com"), `${file} still loads Google Fonts`);
   expect(!page.includes("<!--app-"), `${file} contains an unreplaced template placeholder`);
   expect(!/id="root"><\/div>/.test(page), `${file} has an empty root (not prerendered)`);
+}
+
+// 3. Static assets and the 404 page.
+for (const asset of ["fonts/inter-latin-wght.woff2", "fonts/jetbrains-mono-latin-wght.woff2", "og-image.png", "apple-touch-icon.png", "favicon.svg"]) {
+  await access(path.join(rootDir, "dist", asset)).catch(() => errors.push(`dist/${asset} is missing`));
+}
+const notFound = await readFile(path.join(rootDir, "dist/404.html"), "utf8");
+expect(notFound.includes('name="robots" content="noindex"'), "404.html is not noindex");
+expect(!notFound.includes('type="module"'), "404.html still loads the app script");
+expect(!notFound.includes("rel=\"canonical\""), "404.html must not have a canonical URL");
+for (const { code } of LANGUAGES) {
+  expect(notFound.includes(locales[code].notFound.heading), `404.html is missing the ${code} text`);
 }
 
 const sitemap = await readFile(path.join(rootDir, "dist/sitemap.xml"), "utf8");

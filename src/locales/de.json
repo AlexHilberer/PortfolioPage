@@ -9,7 +9,8 @@
       "Cloud-native Systeme",
       "Data Engineering",
       "KI-Engineering"
-    ]
+    ],
+    "ogImageAlt": "Alexander Hilberer, Data & AI Systems Engineer. Datenplattformen, MLOps und agentische KI."
   },
   "nav": {
     "langToggleAria": "Sprache wählen",
@@ -123,5 +124,11 @@
     "intro": "Wenn du dich austauschen oder einfach Kontakt aufnehmen möchtest, freue ich mich über eine Nachricht.",
     "github": "GitHub",
     "linkedin": "LinkedIn"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden | Alexander Hilberer",
+    "heading": "Seite nicht gefunden",
+    "text": "Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite.",
+    "home": "Zur Startseite"
   }
 }

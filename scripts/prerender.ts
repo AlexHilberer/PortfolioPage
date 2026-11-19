@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { LANGUAGES, SITE_URL, absoluteUrl, type LangCode } from "../src/i18n/config";
+import { LANGUAGES, OG_IMAGE_PATH, OG_IMAGE_SIZE, SITE_URL, absoluteUrl, getLanguage, type LangCode } from "../src/i18n/config";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(rootDir, "dist");
@@ -23,6 +23,7 @@ type ServerModule = typeof import("../src/entry-server");
 function buildHead(mod: ServerModule, lang: LangCode): string {
   const meta = mod.locales[lang].meta;
   const url = absoluteUrl(lang);
+  const image = SITE_URL + OG_IMAGE_PATH;
   const defaultLang = LANGUAGES[0].code;
   const structuredData = {
     "@context": "https://schema.org",
@@ -57,9 +58,47 @@ function buildHead(mod: ServerModule, lang: LangCode): string {
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
     `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
-    `<meta property="og:locale" content="${lang}" />`,
+    `<meta property="og:site_name" content="${escapeHtml(mod.profile.name)}" />`,
+    `<meta property="og:locale" content="${getLanguage(lang).ogLocale}" />`,
+    ...LANGUAGES.filter((l) => l.code !== lang).map(
+      (l) => `<meta property="og:locale:alternate" content="${l.ogLocale}" />`
+    ),
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="${OG_IMAGE_SIZE.width}" />`,
+    `<meta property="og:image:height" content="${OG_IMAGE_SIZE.height}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(meta.ogImageAlt)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(meta.description)}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(meta.ogImageAlt)}" />`,
     `<script type="application/ld+json">${escapeJson(structuredData)}</script>`
   ].join("\n  ");
+}
+
+function buildNotFound(template: string, mod: ServerModule): string {
+  const defaultLang = LANGUAGES[0].code;
+  const head = [
+    `<title>${escapeHtml(mod.locales[defaultLang].notFound.title)}</title>`,
+    `<meta name="robots" content="noindex" />`
+  ].join("\n  ");
+  const blocks = LANGUAGES.map((l) => {
+    const text = mod.locales[l.code].notFound;
+    return [
+      `<div lang="${l.code}" style="margin-bottom: 40px">`,
+      `<h1 class="hero__name">${escapeHtml(text.heading)}</h1>`,
+      `<p class="hero__tagline">${escapeHtml(text.text)}</p>`,
+      `<div class="hero__actions"><a class="button button--primary" href="${l.path}" hreflang="${l.code}">${escapeHtml(text.home)}</a></div>`,
+      `</div>`
+    ].join("");
+  }).join("");
+
+  return template
+    .replace(/<html lang="[^"]*">/, `<html lang="${defaultLang}">`)
+    .replace("<!--app-head-->", () => head)
+    .replace("<!--app-html-->", () => `<main><section class="hero"><div class="container">${blocks}</div></section></main>`)
+    .replace(/<script type="module"[^>]*><\/script>\s*/g, "")
+    .replace(/<link rel="modulepreload"[^>]*>\s*/g, "");
 }
 
 async function prerender() {
@@ -100,8 +139,8 @@ async function prerender() {
     ].join("\n") + "\n"
   );
 
-  // GitHub Pages serves 404.html for unknown paths; reuse the default-language page.
-  await writeFile(path.join(distDir, "404.html"), await readFile(path.join(distDir, "index.html"), "utf8"));
+  // GitHub Pages serves 404.html (with a 404 status) for unknown paths.
+  await writeFile(path.join(distDir, "404.html"), buildNotFound(template, mod));
 
   await rm(serverDir, { recursive: true, force: true });
 }

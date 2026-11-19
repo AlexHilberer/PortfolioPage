@@ -13,8 +13,8 @@ This repository is Alexander Hilberer's portfolio site. It is a React + TypeScri
 - `src/data/` holds language-neutral content (profile, exploring items, projects, certifications).
 - `src/components/` contains the UI: `Header`, `LanguageSwitcher`, `Sections` (Hero, About, Work, Projects, Credentials, Contact, Footer) and `Icons`.
 - `src/styles/` is imported in this order: `base.css`, `theme.css`, `layout.css`, `components.css`.
-- `public/` is copied to the site root: `favicon.svg` and `assets/resume/` (language-specific PDFs).
-- `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and `404.html`. `scripts/check-build.ts` verifies locale parity and the generated output.
+- `public/` is copied to the site root: `favicon.svg`, `apple-touch-icon.png`, `og-image.png`, `fonts/` (self-hosted Inter and JetBrains Mono WOFF2 plus licenses) and `assets/resume/` (language-specific PDFs).
+- `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and a standalone, `noindex`, bilingual `404.html` built from `notFound.*` in the locales. `scripts/check-build.ts` verifies locale parity and the generated output.
 - `.github/workflows/deploy-pages.yml` builds, checks and deploys `dist/` to GitHub Pages.
 
 ## Editing Rules
@@ -27,6 +27,7 @@ This repository is Alexander Hilberer's portfolio site. It is a React + TypeScri
 - Preserve `target="_blank" rel="noopener noreferrer"` on external links.
 - Keep responsive behaviour and keyboard accessibility intact; interactive controls need correct semantics and ARIA state.
 - Reuse existing CSS variables, classes and component patterns before creating new ones. Put foundational rules in `base.css` or `theme.css`, structural layout in `layout.css`, and reusable or section components in `components.css`.
+- Do not add third-party font, script or style requests; the check fails if `fonts.googleapis.com` appears. Add new fonts as WOFF2 files under `public/fonts/` with a `@font-face` in `theme.css`.
 - Keep the output contract: each language is generated at `dist/<LANGUAGES.path>/index.html`, with the default language at `dist/index.html`.
 
 ## Content Changes
@@ -50,7 +51,7 @@ Add records to `src/data/certifications.ts` following the `Certification` type: 
 
 - Keep the key structure identical in every `src/locales/*.json`. `npm run check` fails on missing, extra or empty keys, and on missing project or exploring keys.
 - To add a language: add it to `LANGUAGES` (`src/i18n/config.ts`), create `src/locales/<code>.json`, register it in `src/i18n/index.ts`, add `resume.<code>` in `src/data/profile.ts` and the PDF in `public/assets/resume/`.
-- Keep `meta.title`, `meta.description`, `meta.jobTitle` and `meta.knowsAbout` current; the prerender uses them for the title, description, Open Graph tags and JSON-LD.
+- Keep `meta.title`, `meta.description`, `meta.ogImageAlt`, `meta.jobTitle` and `meta.knowsAbout` current; the prerender uses them for the title, description, Open Graph tags and JSON-LD.
 
 ## Verification
 

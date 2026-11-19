@@ -6,7 +6,7 @@ Portfolio page for Alexander Hilberer, built with React, TypeScript and Vite. `r
 
 ```
 index.html                # Vite template with <!--app-head--> / <!--app-html--> placeholders
-public/                   # copied as-is: favicon.svg, assets/resume/*.pdf
+public/                   # copied as-is: favicon, apple-touch-icon, og-image.png, fonts/, assets/resume/*.pdf
 src/
   main.tsx                # client entry: hydrates the prerendered page
   entry-server.tsx        # render(lang) used by the prerender step
@@ -64,4 +64,8 @@ Keep the custom domain configured in the GitHub Pages settings. The root `CNAME`
 
 ## SEO output
 
-The build produces complete German and English pages with per-language titles, descriptions, canonical URLs, Open Graph tags, hreflang links and Person/WebSite JSON-LD, plus `robots.txt`, `sitemap.xml` (with hreflang alternates) and `404.html`.
+The build produces complete German and English pages with per-language titles, descriptions, canonical URLs, Open Graph tags, hreflang links and Person/WebSite JSON-LD, plus `robots.txt`, `sitemap.xml` (with hreflang alternates) and a standalone bilingual `404.html` (`noindex`). Pages carry Open Graph and Twitter card tags with a share image (`public/og-image.png`, 1200x630).
+
+## Fonts and share image
+
+Inter and JetBrains Mono are self-hosted as Latin-subset variable WOFF2 files in `public/fonts/` (SIL OFL, licenses alongside), declared in `src/styles/theme.css` and preloaded from `index.html`. There is no request to Google Fonts. `public/og-image.png` and `public/apple-touch-icon.png` are static images; replace them to change link previews or the home-screen icon. Their alt text is `meta.ogImageAlt` in the locale files.

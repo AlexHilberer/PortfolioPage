@@ -8,11 +8,14 @@ export const SITE_URL = "https://hilberer.dev";
  * build check all derive from this list.
  */
 export const LANGUAGES = [
-  { code: "de", label: "DE", path: "/" },
-  { code: "en", label: "EN", path: "/en/" }
+  { code: "de", label: "DE", path: "/", ogLocale: "de_DE" },
+  { code: "en", label: "EN", path: "/en/", ogLocale: "en_US" }
 ] as const;
 
 export type LangCode = (typeof LANGUAGES)[number]["code"];
+
+export const OG_IMAGE_PATH = "/og-image.png";
+export const OG_IMAGE_SIZE = { width: 1200, height: 630 } as const;
 
 export const DEFAULT_LANG: LangCode = "de";
 export const LANG_STORAGE_KEY = "site:lang";
