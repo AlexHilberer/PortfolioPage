@@ -32,10 +32,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build static site
+      - name: Type-check and build (Vite + prerender)
         run: npm run build
 
-      - name: Validate build output
+      - name: Validate locales and prerendered pages
         run: npm run check
 
       - name: Configure GitHub Pages

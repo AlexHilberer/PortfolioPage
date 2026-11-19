@@ -1,6 +1,16 @@
-window.APP = window.APP || { data: {}, i18n: {} };
+export type Certification = {
+  id: string;
+  code: string;
+  name: string;
+  issuer: string;
+  issuerIcon: "azure" | "gcp";
+  status: "active" | "retired";
+  group: "primary" | "supporting";
+  verifyUrl: string;
+  order: number;
+};
 
-APP.data.certifications = [
+export const certifications: Certification[] = [
   {
     id: "dp-100",
     code: "DP-100",

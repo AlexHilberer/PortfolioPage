@@ -86,6 +86,8 @@
 }
 
 .lang-toggle__button {
+  display: inline-block;
+  text-decoration: none;
   padding: 3px 7px;
   border: none;
   border-radius: 2px;

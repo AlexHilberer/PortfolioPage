@@ -1,15 +1,11 @@
-window.APP = window.APP || { data: {}, i18n: {} };
-
-APP.data.projects = [
+export const projects = [
   {
     id: "onprem-data-lakehouse",
     title: "On-Prem Data Lakehouse",
     link: "https://github.com/AlexHilberer/On-Prem-Data-Lakehouse",
     environment: "onprem",
     highlights: ["identity", "orchestration", "analytics"],
-    tech: [
-      "Apache Spark", "Apache Iceberg", "Apache Airflow", "Trino", "Apache Ranger"
-    ],
+    tech: ["Apache Spark", "Apache Iceberg", "Apache Airflow", "Trino", "Apache Ranger"],
     order: 1
   },
   {
@@ -18,9 +14,7 @@ APP.data.projects = [
     link: "https://github.com/AlexHilberer/On-Prem-AgenticBI",
     environment: "onprem",
     highlights: ["access", "governance", "tools"],
-    tech: [
-      "LibreChat", "Authentik", "Cube", "Apache Superset", "Azure AI Foundry"
-    ],
+    tech: ["LibreChat", "Authentik", "Cube", "Apache Superset", "Azure AI Foundry"],
     order: 2
   },
   {
@@ -29,9 +23,7 @@ APP.data.projects = [
     link: "https://github.com/AlexHilberer/OnPremise-Machine-Learning-Operations",
     environment: "onprem",
     highlights: ["lifecycle", "monitoring", "delivery"],
-    tech: [
-      "Apache Airflow", "MLflow", "PostgreSQL", "SHAP", "scikit-learn"
-    ],
+    tech: ["Apache Airflow", "MLflow", "PostgreSQL", "SHAP", "scikit-learn"],
     order: 3
   },
   {
@@ -40,9 +32,7 @@ APP.data.projects = [
     link: "https://github.com/AlexHilberer/Fabric-Agentic-Analytics",
     environment: "azure",
     highlights: ["infrastructure", "analytics", "integration"],
-    tech: [
-      "Microsoft Fabric", "Terraform", "fabric-cicd", "Power BI", "Open WebUI"
-    ],
+    tech: ["Microsoft Fabric", "Terraform", "fabric-cicd", "Power BI", "Open WebUI"],
     order: 4
   }
-];
+] as const;

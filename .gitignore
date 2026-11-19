@@ -15,4 +15,6 @@ desktop.ini
 
 # Build output
 dist/
+dist-server/
 node_modules/
+*.tsbuildinfo

@@ -1,68 +1,66 @@
 # Portfolio Site
 
-Static resume/portfolio page for Alexander Hilberer. Plain HTML/CSS/JS with a small Node.js build step that pre-renders the German and English pages for GitHub Pages.
+Resume/portfolio page for Alexander Hilberer, built with React, TypeScript and Vite. `react-i18next` handles the translations. A build step prerenders one static HTML page per language for GitHub Pages, so crawlers get the full content without running JavaScript and React hydrates it in the browser.
 
 ## Structure
 
 ```
-index.html              # single page shell, sections, data-i18n-key/data-bind hooks
-assets/css/             # base -> theme -> layout -> components (loaded in that order)
-assets/js/
-  i18n.js               # language switching, DOM text swap, persistence
-  content.js             # hydrates project/certification/profile data in the browser
-  main.js                # init orchestrator
-data/                    # content: profile, experience, projects, certifications
-i18n/                    # translation dictionaries (de.js default, en.js)
-assets/resume/           # your resume PDFs (not included, see below)
-scripts/build.mjs        # renders / and /en/ into dist/
-scripts/check-build.mjs  # verifies the generated pages
-.github/workflows/       # builds and deploys the Pages artifact
+index.html                # Vite template with <!--app-head--> / <!--app-html--> placeholders
+public/                   # copied as-is: favicon.svg, assets/resume/*.pdf
+src/
+  main.tsx                # client entry: hydrates the prerendered page
+  entry-server.tsx        # render(lang) used by the prerender step
+  App.tsx                 # page composition
+  components/             # Header, LanguageSwitcher, Sections (Hero, About, ...), Icons
+  i18n/config.ts          # LANGUAGES: the single list of supported languages
+  i18n/index.ts           # i18next setup (typed keys, SSR-safe instances)
+  locales/{de,en}.json    # all language-dependent copy (de is the default)
+  data/                   # language-neutral content: profile, experience, projects, certifications
+  styles/                 # base -> theme -> layout -> components
+scripts/prerender.ts      # writes dist/index.html, dist/en/index.html, sitemap.xml, robots.txt, 404.html
+scripts/check-build.ts    # checks locale parity and the generated pages
+.github/workflows/        # builds, checks and deploys dist/ to GitHub Pages
 ```
 
-Content and layout are separated: `data/` and `i18n/` hold everything editable. The build renders those values into HTML so crawlers receive the complete page without running JavaScript; the browser scripts keep language switching and navigation interactive.
+## Languages
 
-## Add a project
+German is published at `/` and English at `/en/`. The language switcher consists of real links, and the last choice is remembered. Visitors who chose another language are sent to it when they open `/`.
 
-Edit `data/projects.js`, add an object with `id`, `title`, `link`, `environment` ("onprem"/"azure"/"gcp" - drives the small icon under the title, see `assets/js/icons.js`), `highlights[]`, `tech[]`, and `order`. `highlights` contains the three keys used for the project's short technical points.
+`LANGUAGES` in `src/i18n/config.ts` drives routing, the switcher, prerendering, hreflang, the sitemap and the build check.
 
-Then add matching `projects.<id>.description` and `projects.<id>.highlights.<key>` entries to **both** `i18n/de.js` and `i18n/en.js`. Every project uses the same layout, so no HTML/CSS changes are needed.
+### Add a language
 
-## Add a job to Experience
+1. Add an entry to `LANGUAGES` in `src/i18n/config.ts` (code, switcher label, URL path, e.g. `{ code: "fr", label: "FR", path: "/fr/" }`).
+2. Copy `src/locales/de.json` to `src/locales/<code>.json` and translate it.
+3. Register it in `src/i18n/index.ts` (`locales` and `resources`) and add `resume.<code>` in `src/data/profile.ts`, plus the PDF in `public/assets/resume/`.
+4. Run `npm run build && npm run check`. The check fails when keys differ between locales or a resume path is missing.
 
-Edit `data/experience.js`, add `{ id, company, startDate: "YYYY-MM", endDate: "YYYY-MM" | null, order }` (`endDate: null` renders as "Present"/"Heute"). `company` is a proper noun and stays in the data file; `role`, `location`, and `description` are language-dependent, so add a matching `experience.<id>.{role, location, description}` entry to **both** `i18n/de.js` and `i18n/en.js`.
+## Add content
 
-## Add a certification
+- **Project:** add an object to `src/data/projects.ts` (`id`, `title`, `link`, `environment` of `"onprem" | "azure" | "gcp"`, three `highlights`, at most five `tech` tags, `order`), then add `projects.<id>.description` and `projects.<id>.highlights.<key>` to **every** locale file.
+- **Experience:** add `{ id, company, startDate: "YYYY-MM", endDate: "YYYY-MM" | null, order }` to `src/data/experience.ts` and `experience.<id>.{role,location,description}` to every locale file.
+- **Certification:** add a record to `src/data/certifications.ts` (see the `Certification` type). Certification names and codes are proper nouns and are not translated.
 
-Edit `data/certifications.js`, add `{ id, code, name, issuer, issuerIcon: "azure" | "gcp", status: "active" | "retired", group: "primary" | "supporting", verifyUrl, order }`. Active supporting credentials render in a collapsed secondary section; retired credentials render in their own collapsed, visually muted section.
+## Develop and build
 
-## Add a language
-
-The current build deliberately publishes German at `/` and English at `/en/`. Adding another language also requires extending `scripts/build.mjs` with its output path and SEO alternate link.
-
-The language toggle button renders itself from `SUPPORTED_LANGS` - no markup changes needed there.
-
-## Build locally
-
-Use Node.js 22 or later:
+Use Node.js 20.19 or later (CI uses 22):
 
 ```bash
 npm ci
-npm run build
-npm run check
+npm run dev        # Vite dev server
+npm run build      # type-check, client build, server build, prerender into dist/
+npm run check      # locale parity and generated-page checks
+npm run preview    # serve dist/ locally
 ```
 
-The deployable output is written to `dist/` and intentionally ignored by Git. Serve that directory locally to inspect the generated HTML; do not publish the repository root.
+`dist/` and `dist-server/` are generated and ignored by Git.
 
 ## Deploy
 
-In GitHub, set **Settings → Pages → Source** to **GitHub Actions**. Pushing to `main` runs the workflow, validates the static pages, and deploys the `dist/` artifact. Pull requests run the build and validation but do not deploy.
+In GitHub, set **Settings → Pages → Source** to **GitHub Actions**. Pushing to `main` runs `.github/workflows/deploy-pages.yml`: `npm ci`, `npm run build`, `npm run check`, then it uploads and deploys `dist/`. Pull requests run the build and check but do not deploy.
 
-Keep the custom domain configured in GitHub Pages settings. The action deploys the generated artifact, so the legacy root `CNAME` file is not used for the deployment.
+Keep the custom domain configured in the GitHub Pages settings. The root `CNAME` file is not part of the artifact.
 
 ## SEO output
 
-The build produces:
-
-- complete German content at `https://hilberer.dev/` and English content at `https://hilberer.dev/en/`;
-- language-specific titles, descriptions, canonical URLs, Open Graph metadata, hreflang links, and Person/WebSite JSON-LD;
-- `robots.txt` and `sitemap.xml`.
+The build produces complete German and English pages with per-language titles, descriptions, canonical URLs, Open Graph tags, hreflang links and Person/WebSite JSON-LD, plus `robots.txt`, `sitemap.xml` (with hreflang alternates) and `404.html`.
