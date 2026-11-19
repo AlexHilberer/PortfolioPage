@@ -129,6 +129,7 @@
     "title": "Page not found | Alexander Hilberer",
     "heading": "Page not found",
     "text": "This page does not exist (anymore). The home page might help.",
-    "home": "Back to the home page"
+    "home": "Back to the home page",
+    "terminalError": "No such file or directory"
   }
 }

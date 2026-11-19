@@ -23,12 +23,12 @@ export function App({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
 }
 
 /** Standalone 404 page: same header and footer as the site, language taken from the URL. */
-export function NotFoundApp({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
+export function NotFoundApp({ lang, i18n, path }: { lang: LangCode; i18n: i18n; path?: string }) {
   return (
     <I18nextProvider i18n={i18n}>
       <Header lang={lang} linkBase={getLanguage(lang).path} />
       <main>
-        <NotFound lang={lang} />
+        <NotFound lang={lang} path={path} />
       </main>
       <Footer />
     </I18nextProvider>

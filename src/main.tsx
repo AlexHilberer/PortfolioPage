@@ -34,7 +34,7 @@ if (container.hasAttribute("data-not-found")) {
   document.title = i18n.t("notFound.title");
   createRoot(container).render(
     <StrictMode>
-      <NotFoundApp lang={lang} i18n={i18n} />
+      <NotFoundApp lang={lang} i18n={i18n} path={window.location.pathname} />
     </StrictMode>
   );
 } else {

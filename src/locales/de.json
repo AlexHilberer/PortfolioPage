@@ -129,6 +129,7 @@
     "title": "Seite nicht gefunden | Alexander Hilberer",
     "heading": "Seite nicht gefunden",
     "text": "Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite.",
-    "home": "Zur Startseite"
+    "home": "Zur Startseite",
+    "terminalError": "Datei oder Verzeichnis nicht gefunden"
   }
 }
