@@ -13,7 +13,7 @@ This repository is Alexander Hilberer's portfolio site. It is a React + TypeScri
 - `src/data/` holds language-neutral content (profile, exploring items, projects, certifications).
 - `src/components/` contains the UI: `Header`, `LanguageSwitcher`, `Sections` (Hero, About, Work, Projects, Credentials, Contact, Footer) and `Icons`.
 - `src/styles/` is imported in this order: `base.css`, `theme.css`, `layout.css`, `components.css`.
-- `public/` is copied to the site root: `favicon.svg`, `apple-touch-icon.png`, `og-image.png`, `fonts/` (self-hosted Inter and JetBrains Mono WOFF2 plus licenses) and `assets/resume/` (language-specific PDFs).
+- `public/` is copied to the site root: `favicon.svg`, `apple-touch-icon.png`, `og-image-2.png`, `fonts/` (self-hosted Inter and JetBrains Mono WOFF2 plus licenses) and `assets/resume/` (language-specific PDFs).
 - `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and a standalone, `noindex`, bilingual `404.html` built from `notFound.*` in the locales. `scripts/check-build.ts` verifies locale parity and the generated output.
 - `.github/workflows/deploy-pages.yml` builds, checks and deploys `dist/` to GitHub Pages.
 
