@@ -14,7 +14,7 @@ This repository is Alexander Hilberer's portfolio site. It is a React + TypeScri
 - `src/components/` contains the UI: `Header`, `LanguageSwitcher`, `Sections` (Hero, About, Work, Projects, Credentials, Contact, Footer) and `Icons`.
 - `src/styles/` is imported in this order: `base.css`, `theme.css`, `layout.css`, `components.css`.
 - `public/` is copied to the site root: `favicon.svg` (glyphs as outlines, no font dependency), `favicon.ico` (16/32/48), `apple-touch-icon.png`, `og-image-2.png`, `fonts/` (self-hosted Inter and JetBrains Mono WOFF2 plus licenses) and `assets/resume/` (language-specific PDFs).
-- `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and a standalone, `noindex`, bilingual `404.html` built from `notFound.*` in the locales. `scripts/check-build.ts` verifies locale parity and the generated output.
+- `scripts/prerender.ts` writes `dist/index.html`, `dist/en/index.html` (one per `LANGUAGES` entry), `sitemap.xml`, `robots.txt` and a `noindex` `404.html` that reuses the site header and footer; it is prerendered in the default language and `src/main.tsx` re-renders it in the language of the URL (`/en/...` is English), using `notFound.*` from the locales. `scripts/check-build.ts` verifies locale parity and the generated output.
 - `.github/workflows/deploy-pages.yml` builds, checks and deploys `dist/` to GitHub Pages.
 
 ## Editing Rules

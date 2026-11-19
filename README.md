@@ -64,7 +64,7 @@ Keep the custom domain configured in the GitHub Pages settings. The root `CNAME`
 
 ## SEO output
 
-The build produces complete German and English pages with per-language titles, descriptions, canonical URLs, Open Graph tags, hreflang links and Person/WebSite JSON-LD, plus `robots.txt`, `sitemap.xml` (with hreflang alternates) and a standalone bilingual `404.html` (`noindex`). Pages carry Open Graph and Twitter card tags with a share image (`public/og-image-2.png`, 1200x630).
+The build produces complete German and English pages with per-language titles, descriptions, canonical URLs, Open Graph tags, hreflang links and Person/WebSite JSON-LD, plus `robots.txt`, `sitemap.xml` (with hreflang alternates) and a `404.html` with the full site header and language switcher (`noindex`; the language follows the URL, `/en/...` shows English). Pages carry Open Graph and Twitter card tags with a share image (`public/og-image-2.png`, 1200x630).
 
 ## Fonts and share image
 

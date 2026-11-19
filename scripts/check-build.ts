@@ -88,10 +88,13 @@ for (const asset of ["fonts/inter-latin-wght.woff2", "fonts/jetbrains-mono-latin
 }
 const notFound = await readFile(path.join(rootDir, "dist/404.html"), "utf8");
 expect(notFound.includes('name="robots" content="noindex"'), "404.html is not noindex");
-expect(!notFound.includes('type="module"'), "404.html still loads the app script");
-expect(!notFound.includes("rel=\"canonical\""), "404.html must not have a canonical URL");
-for (const { code } of LANGUAGES) {
-  expect(notFound.includes(locales[code].notFound.heading), `404.html is missing the ${code} text`);
+expect(notFound.includes("data-not-found"), "404.html is missing the data-not-found marker");
+expect(notFound.includes('type="module"'), "404.html does not load the app script (language detection)");
+expect(!notFound.includes('rel="canonical"'), "404.html must not have a canonical URL");
+expect(notFound.includes('class="nav"') && notFound.includes("lang-toggle"), "404.html is missing the header / language switcher");
+expect(notFound.includes(locales[LANGUAGES[0].code].notFound.heading), "404.html is missing the default-language text");
+for (const { path: langPath } of LANGUAGES) {
+  expect(notFound.includes(`href="${langPath}"`), `404.html is missing a link to ${langPath}`);
 }
 
 const sitemap = await readFile(path.join(rootDir, "dist/sitemap.xml"), "utf8");

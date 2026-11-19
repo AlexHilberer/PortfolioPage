@@ -83,23 +83,14 @@ function buildNotFound(template: string, mod: ServerModule): string {
     `<title>${escapeHtml(mod.locales[defaultLang].notFound.title)}</title>`,
     `<meta name="robots" content="noindex" />`
   ].join("\n  ");
-  const blocks = LANGUAGES.map((l) => {
-    const text = mod.locales[l.code].notFound;
-    return [
-      `<div lang="${l.code}" style="margin-bottom: 40px">`,
-      `<h1 class="hero__name">${escapeHtml(text.heading)}</h1>`,
-      `<p class="hero__tagline">${escapeHtml(text.text)}</p>`,
-      `<div class="hero__actions"><a class="button button--primary" href="${l.path}" hreflang="${l.code}">${escapeHtml(text.home)}</a></div>`,
-      `</div>`
-    ].join("");
-  }).join("");
 
+  // The client replaces this default-language markup with the language of the
+  // requested URL (see src/main.tsx), because one 404.html serves every path.
   return template
     .replace(/<html lang="[^"]*">/, `<html lang="${defaultLang}">`)
     .replace("<!--app-head-->", () => head)
-    .replace("<!--app-html-->", () => `<main><section class="hero"><div class="container">${blocks}</div></section></main>`)
-    .replace(/<script type="module"[^>]*><\/script>\s*/g, "")
-    .replace(/<link rel="modulepreload"[^>]*>\s*/g, "");
+    .replace('<div id="root">', '<div id="root" data-not-found>')
+    .replace("<!--app-html-->", () => mod.renderNotFound(defaultLang));
 }
 
 async function prerender() {

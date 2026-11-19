@@ -6,7 +6,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const LINKS = ["about", "work", "projects", "credentials", "contact"] as const;
 
-export function Header({ lang }: { lang: LangCode }) {
+export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
@@ -60,7 +60,7 @@ export function Header({ lang }: { lang: LangCode }) {
           }}
         >
           {LINKS.map((link) => (
-            <a key={link} href={"#" + link}>
+            <a key={link} href={linkBase + "#" + link}>
               {t(`nav.${link}`)}
             </a>
           ))}
