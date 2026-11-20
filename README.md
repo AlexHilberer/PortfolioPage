@@ -75,7 +75,7 @@ The site is built around the logo: a ring of four **nodes**, **links** between t
 - the logo's wave as the underline of every heading,
 - nodes as bullets (principles, highlights), a connected chain for "exploring", cards linked in pairs, hollow/filled status nodes on certificates,
 - the footer is the contact section (`#contact`) and the last node of the spine,
-- the animated logo in the hero: all four ring dashes stretch to the nodes together until the ring is closed while the white wave flows out, hold, then the ring opens and the wave draws back in.
+- the animated logo in the hero: all four ring dashes stretch to the nodes together until the ring is closed, hold, then draw back in; the white wave stays.
 
 `src/components/LogoMark.tsx` draws the logo. `uid` must be unique per instance on a page (it namespaces the SVG filter and gradient ids); `animated`, `glow` and `decor` are only used in the hero. Colours come from the tokens in `src/styles/theme.css`, so the logo follows the theme. Motion stops for visitors with `prefers-reduced-motion`.
 

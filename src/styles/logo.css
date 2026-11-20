@@ -56,22 +56,9 @@
 
 
 
-/* While the ring connects, the white wave hands over: it flows out (left to
-   right) as the ring closes, is gone while the ring holds, and draws back in
-   as the ring opens again. Same 6 s loop as the ring. */
-.logo--animated .logo__wave {
-  stroke-dasharray: 100 100;
-  animation: logo-wave 6s var(--ease) infinite;
-}
 
-@keyframes logo-wave {
-  0%, 4% { stroke-dashoffset: 0; }
-  28%, 66% { stroke-dashoffset: -100; }
-  66.01% { stroke-dashoffset: 100; }
-  90%, 100% { stroke-dashoffset: 0; }
-}
 
-/* all four dashes close and open together, in step with the wave */
+/* all four dashes close and open together */
 @keyframes logo-ring {
   0%, 4% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
   28%, 66% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
@@ -94,8 +81,7 @@
 @media (prefers-reduced-motion: reduce) {
   .logo--animated .logo__dots,
   .logo--animated .logo__aura,
-  .logo--animated .logo__q,
-  .logo--animated .logo__wave {
+  .logo--animated .logo__q {
     animation: none;
   }
 }
