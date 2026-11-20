@@ -65,10 +65,15 @@ export function LogoMark({ uid, animated = false, glow = false, decor = false, l
 
       {decor && <circle className="logo__aura" cx="256" cy="256" r="230" fill={`url(#${uid}-aura)`} />}
       {decor && (
-        <g className="logo__dots">
-          {DOTS.map((dot, i) => (
-            <circle key={i} cx={dot.x} cy={dot.y} r={dot.r} />
-          ))}
+        // Outer wrapper: extra momentum during the intro, settling to 0.
+        // Inner group: the slow, endless spin. Both rotate the same way, so the
+        // intro hands over to the page animation without a jump.
+        <g className="logo__dots-spin">
+          <g className="logo__dots">
+            {DOTS.map((dot, i) => (
+              <circle key={i} cx={dot.x} cy={dot.y} r={dot.r} />
+            ))}
+          </g>
         </g>
       )}
 

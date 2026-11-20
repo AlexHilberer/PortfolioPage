@@ -105,8 +105,24 @@
   animation: logo-intro-aura 1.4s 0.3s ease both;
 }
 
+/* The dots spin from the very start (the endless spin is listed first, so it
+   keeps running when the intro class is removed) and get extra momentum that
+   eases out exactly at the hand-over. */
+.logo__dots-spin {
+  transform-origin: 256px 256px;
+}
+
 .logo--intro .logo__dots {
-  animation: logo-intro-dots 1.4s 0.5s ease both;
+  animation: logo-spin 40s linear infinite reverse, logo-intro-dots 0.9s 0.1s ease both;
+}
+
+.logo--intro .logo__dots-spin {
+  animation: logo-intro-dots-spin 2.2s cubic-bezier(0.15, 0.6, 0.3, 1) both;
+}
+
+@keyframes logo-intro-dots-spin {
+  from { transform: rotate(200deg); } /* same direction as the reversed spin */
+  to { transform: rotate(0deg); }
 }
 
 @keyframes logo-intro-node {
