@@ -27,7 +27,8 @@ section:not(.hero) > .container::after,
 .footer--spine > .container::after {
   position: absolute;
   z-index: 0;
-  top: -96px;
+  /* 1px overlap with the previous segment, so the joins never show a seam */
+  top: -97px;
   bottom: -96px;
   left: 34px;
   width: 2px;
@@ -70,9 +71,9 @@ section:not(.hero) > .container::after,
 /* the footer (#contact) is the last node: the line ends there */
 .footer--spine > .container::before,
 .footer--spine > .container::after {
-  top: -72px;
+  top: -73px;
   bottom: auto;
-  height: calc(72px + clamp(1.9rem, 3.4vw, 2.6rem) * 0.3 + 11px);
+  height: calc(73px + clamp(1.9rem, 3.4vw, 2.6rem) * 0.3 + 11px);
 }
 
 /* wave from the hero logo into the spine (wide screens, drawn by useSpine) */

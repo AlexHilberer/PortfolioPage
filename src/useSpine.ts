@@ -99,11 +99,14 @@ export function useSpine() {
     const resize = new ResizeObserver(() => measure());
     resize.observe(document.body);
     window.addEventListener("scroll", onScroll, { passive: true });
+    // The intro moves the hero logo with a transform: measure again once it is in place.
+    window.addEventListener("introend", measure);
     void document.fonts?.ready.then(measure);
 
     return () => {
       resize.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("introend", measure);
       if (frame) cancelAnimationFrame(frame);
       root.classList.remove("js-spine");
     };

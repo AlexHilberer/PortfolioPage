@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    /* Startup intro: once per browser session, home pages only ("/" and "/en/"),
+       not for #section links or reduced motion. The page stays hidden until
+       src/useIntro.ts takes over; the timeout shows it anyway if that never happens. */
+    (function () {
+      try {
+        var d = document.documentElement;
+        if (location.hash || sessionStorage.getItem("site:intro")) return;
+        if (!/^\/(en\/)?(index\.html)?$/.test(location.pathname)) return;
+        if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        d.classList.add("intro-pending");
+        setTimeout(function () { d.classList.remove("intro-pending"); }, 2500);
+      } catch (e) {}
+    })();
+  </script>
   <!--app-head-->
   <meta name="theme-color" content="#0b0f14" />
   <meta name="color-scheme" content="dark" />

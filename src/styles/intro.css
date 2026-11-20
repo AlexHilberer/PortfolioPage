@@ -1,0 +1,42 @@
+/* Startup intro (see src/useIntro.ts and the inline script in index.html). */
+
+/* decided before the first paint: keep the page hidden until the intro starts */
+html.intro-pending .nav,
+html.intro-pending main,
+html.intro-pending .footer {
+  visibility: hidden;
+}
+
+html.intro-pending,
+html.intro:not(.intro-reveal) {
+  overflow: hidden;
+}
+
+/* running: only the logo is visible, everything else waits */
+html.intro .nav,
+html.intro .hero__copy,
+html.intro main > section:not(.hero),
+html.intro .footer,
+html.intro .spine-link {
+  opacity: 0;
+}
+
+html.intro .nav {
+  transform: translateY(-100%);
+}
+
+html.intro .hero__art {
+  position: relative;
+  z-index: 20;
+}
+
+/* hand-over: the page fades in while the logo glides into place */
+html.intro.intro-reveal .nav,
+html.intro.intro-reveal .hero__copy,
+html.intro.intro-reveal main > section:not(.hero),
+html.intro.intro-reveal .footer,
+html.intro.intro-reveal .spine-link {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}

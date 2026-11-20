@@ -73,11 +73,19 @@ The site is built around the logo: a ring of four **nodes**, **links** between t
 
 - a vertical **spine** with a node per section heading that fills up as you scroll and lights each node when it is reached; on wide screens a wave links the hero logo to the first node (on phones the node sits in front of the heading),
 - the logo's wave as the underline of every heading,
-- nodes as bullets (principles, highlights), a connected chain for "exploring", cards linked in pairs, hollow/filled status nodes on certificates,
+- nodes as bullets (principles, highlights), a connected chain for "exploring", hollow/filled status nodes on certificates,
 - the footer is the contact section (`#contact`) and the last node of the spine,
 - the animated logo in the hero: all four ring dashes stretch to the nodes together until the ring is closed, hold, then draw back in; the white wave stays.
 
 `src/components/LogoMark.tsx` draws the logo. `uid` must be unique per instance on a page (it namespaces the SVG filter and gradient ids); `animated`, `glow` and `decor` are only used in the hero. Colours come from the tokens in `src/styles/theme.css`, so the logo follows the theme. Motion stops for visitors with `prefers-reduced-motion`.
+
+## Startup intro
+
+Once per browser session (per tab), the home pages (`/`, `/en/`) open with a short intro: the hero logo starts centred on screen, its nodes pop in, the wave draws, the ring closes, and then the logo glides into its normal place while the page fades in. It is the real hero logo, so the hand-over is seamless.
+
+- The inline script in `index.html` decides before the first paint (skips `#section` links, reduced motion, the 404 page and later visits in the same session) and has a failsafe that shows the page if the app never starts.
+- `src/useIntro.ts` runs the sequence; any scroll, tap, click or key press skips it. Styles: `src/styles/intro.css` and the `logo-intro-*` keyframes in `src/styles/logo.css`.
+- To see it again, open the site in a new tab or private window.
 
 ## Fonts and share image
 

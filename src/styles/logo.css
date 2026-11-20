@@ -78,6 +78,64 @@
   50% { opacity: 1; transform: scale(1.05); }
 }
 
+/* ---- Startup intro (2.2 s): nodes pop in, the wave draws, the ring closes,
+   then the ring opens while the logo glides into the hero. After it, the
+   class is removed and the normal loop starts from its first frame. ---- */
+/* Nodes grow by animating their radius, not with a transform: scaling
+   elements inside the glow filter group renders a black square in Chrome. */
+.logo--intro .logo__node {
+  animation: logo-intro-node 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+.logo--intro .logo__node:nth-child(1) { animation-delay: 0s; }    /* left */
+.logo--intro .logo__node:nth-child(3) { animation-delay: 0.12s; } /* top */
+.logo--intro .logo__node:nth-child(2) { animation-delay: 0.24s; } /* right */
+.logo--intro .logo__node:nth-child(4) { animation-delay: 0.36s; } /* bottom */
+
+.logo--intro .logo__wave {
+  stroke-dasharray: 100 100;
+  animation: logo-intro-wave 2.2s linear both;
+}
+
+.logo--intro .logo__q {
+  animation: logo-intro-ring 2.2s linear both;
+}
+
+.logo--intro .logo__aura {
+  animation: logo-intro-aura 1.4s 0.3s ease both;
+}
+
+.logo--intro .logo__dots {
+  animation: logo-intro-dots 1.4s 0.5s ease both;
+}
+
+@keyframes logo-intro-node {
+  from { opacity: 0; r: 6px; }
+  to { opacity: 1; r: 32px; }
+}
+
+@keyframes logo-intro-wave {
+  0%, 20% { stroke-dashoffset: 100; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  43%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes logo-intro-ring {
+  0%, 40% { opacity: 0; stroke-dasharray: 0 100; stroke-dashoffset: -50; }
+  43% { opacity: 1; stroke-dasharray: 0 100; stroke-dashoffset: -50; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  64% { opacity: 1; stroke-dasharray: 100 0; stroke-dashoffset: 0; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  95%, 100% { opacity: 1; stroke-dasharray: 42 58; stroke-dashoffset: -29; }
+}
+
+@keyframes logo-intro-aura {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes logo-intro-dots {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logo--animated .logo__dots,
   .logo--animated .logo__aura,

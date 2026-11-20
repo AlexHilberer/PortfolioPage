@@ -72,35 +72,38 @@ export function LogoMark({ uid, animated = false, glow = false, decor = false, l
         </g>
       )}
 
-      <g fill="none" strokeLinecap="round" strokeWidth={14} filter={filter}>
-        {ARCS.map((d, i) => (
-          <path
-            key={d}
-            className={`logo__q logo__q${i + 1}`}
-            pathLength={100}
-            d={d}
-            strokeDasharray="42 58"
-            strokeDashoffset={-29}
-          />
-        ))}
-      </g>
+      {/* One glow filter for the whole mark: several filtered groups animating at
+          once render a black square in Chrome (seen during the intro). */}
+      <g filter={filter}>
+        <g fill="none" strokeLinecap="round" strokeWidth={14}>
+          {ARCS.map((d, i) => (
+            <path
+              key={d}
+              className={`logo__q logo__q${i + 1}`}
+              pathLength={100}
+              d={d}
+              strokeDasharray="42 58"
+              strokeDashoffset={-29}
+            />
+          ))}
+        </g>
 
-      <path
-        className="logo__wave"
-        pathLength={100}
-        d={WAVE}
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={22}
-        filter={filter}
-      />
+        <path
+          className="logo__wave"
+          pathLength={100}
+          d={WAVE}
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={22}
+        />
 
-      <g strokeWidth={20} filter={filter}>
-        <circle className="logo__node logo__node--light" cx="106" cy="256" r="32" />
-        <circle className="logo__node logo__node--light" cx="406" cy="256" r="32" />
-        <circle className="logo__node logo__node--accent" cx="256" cy="106" r="32" />
-        <circle className="logo__node logo__node--accent logo__node--bottom" cx="256" cy="406" r="32" />
+        <g strokeWidth={20}>
+          <circle className="logo__node logo__node--light" cx="106" cy="256" r="32" />
+          <circle className="logo__node logo__node--light" cx="406" cy="256" r="32" />
+          <circle className="logo__node logo__node--accent" cx="256" cy="106" r="32" />
+          <circle className="logo__node logo__node--accent logo__node--bottom" cx="256" cy="406" r="32" />
+        </g>
       </g>
     </svg>
   );

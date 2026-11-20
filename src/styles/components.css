@@ -539,42 +539,6 @@
   transform: translateY(-3px);
 }
 
-/* cards are linked in pairs, like nodes of the logo */
-.project-entry:nth-child(odd)::after {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  width: 28px;
-  height: 2px;
-  background: var(--color-accent-line);
-  content: "";
-}
-
-.project-entry::before {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  width: 12px;
-  height: 12px;
-  border: 2.5px solid var(--color-accent);
-  border-radius: 50%;
-  background: var(--color-bg);
-  transform: translateY(-50%);
-  content: "";
-}
-
-.project-entry:nth-child(odd)::before {
-  right: -7px;
-}
-
-.project-entry:nth-child(even)::before {
-  left: -7px;
-}
-
-.project-entry:nth-child(odd):last-child::before,
-.project-entry:nth-child(odd):last-child::after {
-  display: none;
-}
 
 .project-entry__environment {
   display: inline-flex;
@@ -1014,10 +978,6 @@
     max-width: none;
   }
 
-  .project-entry::before,
-  .project-entry::after {
-    display: none;
-  }
 
   .project-entry {
     padding: 24px;

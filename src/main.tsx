@@ -5,6 +5,7 @@ import "./styles/theme.css";
 import "./styles/layout.css";
 import "./styles/components.css";
 import "./styles/logo.css";
+import "./styles/intro.css";
 import { App, NotFoundApp } from "./App";
 import { createI18n } from "./i18n";
 import { LANGUAGES, LANG_STORAGE_KEY, isLangCode, langFromPath, getLanguage } from "./i18n/config";
