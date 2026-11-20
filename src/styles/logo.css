@@ -34,8 +34,8 @@
   opacity: 0.5;
 }
 
-/* Animated: the four ring dashes stretch towards the nodes until the ring is
-   closed, hold, then draw back in. 6 s loop, staggered clockwise. */
+/* Animated: the four ring dashes stretch towards the nodes together until the
+   ring is closed, hold, then draw back in. 6 s loop. */
 .logo--animated .logo__dots {
   animation: logo-spin 40s linear infinite reverse;
 }
@@ -46,26 +46,15 @@
 }
 
 .logo--animated .logo__q {
+  animation-name: logo-ring;
   animation-duration: 6s;
   animation-iteration-count: infinite;
   animation-timing-function: var(--ease);
 }
 
-.logo--animated .logo__q1 {
-  animation-name: logo-q1;
-}
 
-.logo--animated .logo__q2 {
-  animation-name: logo-q2;
-}
 
-.logo--animated .logo__q3 {
-  animation-name: logo-q3;
-}
 
-.logo--animated .logo__q4 {
-  animation-name: logo-q4;
-}
 
 /* While the ring connects, the white wave hands over: it flows out (left to
    right) as the ring closes, is gone while the ring holds, and draws back in
@@ -77,34 +66,21 @@
 
 @keyframes logo-wave {
   0%, 4% { stroke-dashoffset: 0; }
-  26%, 66% { stroke-dashoffset: -100; }
+  28%, 66% { stroke-dashoffset: -100; }
   66.01% { stroke-dashoffset: 100; }
-  88%, 100% { stroke-dashoffset: 0; }
+  90%, 100% { stroke-dashoffset: 0; }
 }
 
-@keyframes logo-q1 {
-  0%, 2% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-  24%, 66% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
-  86%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
+/* all four dashes close and open together, in step with the wave */
+@keyframes logo-ring {
+  0%, 4% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
+  28%, 66% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
+  90%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
 }
 
-@keyframes logo-q2 {
-  0%, 5% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-  27%, 69% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
-  89%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-}
 
-@keyframes logo-q3 {
-  0%, 8% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-  30%, 72% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
-  92%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-}
 
-@keyframes logo-q4 {
-  0%, 11% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-  33%, 75% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
-  95%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-}
+
 
 @keyframes logo-spin {
   to { transform: rotate(360deg); }
