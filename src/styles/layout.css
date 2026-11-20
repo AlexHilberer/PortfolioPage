@@ -26,6 +26,7 @@ section:not(.hero) > .container::after,
 .footer--spine > .container::before,
 .footer--spine > .container::after {
   position: absolute;
+  z-index: 0;
   top: -96px;
   bottom: -96px;
   left: 34px;
@@ -107,6 +108,8 @@ section:not(.hero) > .container::after,
 
 .section-heading {
   position: relative;
+  /* nodes always sit above the spine line, also while the heading fades in */
+  z-index: 1;
   width: fit-content;
   max-width: 100%;
   margin-bottom: 0.55em;

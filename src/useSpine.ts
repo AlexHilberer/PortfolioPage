@@ -40,9 +40,10 @@ export function useSpine() {
       });
       nodes = Array.from(document.querySelectorAll(".section-heading, .work-step")).map((element) => {
         const box = element.getBoundingClientRect();
+        // Top edge of the node: it lights up the moment the line touches it.
         const offset = element.classList.contains("section-heading")
-          ? parseFloat(getComputedStyle(element).fontSize) * 0.3 + 11
-          : 14;
+          ? parseFloat(getComputedStyle(element).fontSize) * 0.3
+          : 9;
         return { element, y: box.top + scroll + offset };
       });
 

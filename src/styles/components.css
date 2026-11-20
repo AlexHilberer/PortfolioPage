@@ -470,6 +470,38 @@
 }
 
 
+.work-step {
+  position: relative;
+  /* above the spine line, also while fading in */
+  z-index: 1;
+  margin: 0 0 22px;
+  color: var(--color-text-muted);
+  font-size: 1.06rem;
+}
+
+.work-step--last {
+  color: var(--color-text);
+}
+
+/* small nodes on the page spine */
+.work-step::before {
+  position: absolute;
+  top: 0.62em;
+  left: -51px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 5px var(--color-bg), 0 0 12px rgba(69, 182, 168, 0.6);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  content: "";
+}
+
+.js-spine .work-step:not(.is-reached)::before {
+  background: #2f3d47;
+  box-shadow: 0 0 0 5px var(--color-bg);
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
