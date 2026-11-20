@@ -34,9 +34,15 @@ html.intro .hero__art {
 html.intro.intro-reveal .nav,
 html.intro.intro-reveal .hero__copy,
 html.intro.intro-reveal main > section:not(.hero),
-html.intro.intro-reveal .footer,
-html.intro.intro-reveal .spine-link {
+html.intro.intro-reveal .footer {
   opacity: 1;
   transform: none;
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+/* The connector wave stays hidden for the whole intro: it is measured from the
+   logo's final position (at "introend") and only fades in once the intro
+   classes are removed, so it never shows from the centred start position. */
+.spine-link {
+  transition: opacity 0.6s var(--ease);
 }
