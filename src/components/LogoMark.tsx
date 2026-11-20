@@ -2,6 +2,9 @@ const WAVE =
   "M106.0 257.0 C114.7 252.7 140.0 231.5 158.0 231.0 C176.0 230.5 196.3 245.0 214.0 254.0 C231.7 263.0 245.3 277.5 264.0 285.0 C282.7 292.5 307.3 299.2 326.0 299.0 C344.7 298.8 362.7 291.0 376.0 284.0 C389.3 277.0 401.0 261.5 406.0 257.0";
 
 // Four quarter arcs between the node centres, clockwise from the right node.
+// Dash values are absolute (each arc is 235.65 units long) and every gap is longer
+// than the arc, so the dash pattern can never repeat along it. Don't rely on
+// pathLength for dashes: mobile browsers render it inconsistently.
 const ARCS = [
   "M406 256A150 150 0 0 1 256 406",
   "M256 406A150 150 0 0 1 106 256",
@@ -85,17 +88,15 @@ export function LogoMark({ uid, animated = false, glow = false, decor = false, l
             <path
               key={d}
               className={`logo__q logo__q${i + 1}`}
-              pathLength={100}
               d={d}
-              strokeDasharray="42 58"
-              strokeDashoffset={-29}
+              strokeDasharray="98.97 400"
+              strokeDashoffset={-68.34}
             />
           ))}
         </g>
 
         <path
           className="logo__wave"
-          pathLength={100}
           d={WAVE}
           fill="none"
           strokeLinecap="round"

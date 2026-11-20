@@ -102,8 +102,6 @@ section:not(.hero) > .container::after,
 
 .spine-link__fill {
   stroke: var(--color-accent);
-  stroke-dasharray: 1 1;
-  stroke-dashoffset: 1;
   filter: drop-shadow(0 0 4px rgba(69, 182, 168, 0.6));
 }
 
@@ -144,10 +142,12 @@ section:not(.hero) > .container::after,
    continuous path (no repeated tiles, so no seams at tile joins), cut to width */
 .section-heading::after {
   display: block;
-  width: 100%;
+  /* useUnderlines draws an exact-length wave with round caps at both ends;
+     without JavaScript a long wave is cut to the heading width */
+  width: var(--ul-w, 100%);
   height: 14px;
   margin-top: 12px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='14' viewBox='0 0 960 14'%3E%3Cpath d='M0 7C8 1 16 1 24 7S40 13 48 7S64 1 72 7S88 13 96 7S112 1 120 7S136 13 144 7S160 1 168 7S184 13 192 7S208 1 216 7S232 13 240 7S256 1 264 7S280 13 288 7S304 1 312 7S328 13 336 7S352 1 360 7S376 13 384 7S400 1 408 7S424 13 432 7S448 1 456 7S472 13 480 7S496 1 504 7S520 13 528 7S544 1 552 7S568 13 576 7S592 1 600 7S616 13 624 7S640 1 648 7S664 13 672 7S688 1 696 7S712 13 720 7S736 1 744 7S760 13 768 7S784 1 792 7S808 13 816 7S832 1 840 7S856 13 864 7S880 1 888 7S904 13 912 7S928 1 936 7S952 13 960 7' fill='none' stroke='%2345b6a8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center / 960px 14px;
+  background: var(--ul-img, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='14' viewBox='0 0 960 14'%3E%3Cpath d='M0 7C8 1 16 1 24 7S40 13 48 7S64 1 72 7S88 13 96 7S112 1 120 7S136 13 144 7S160 1 168 7S184 13 192 7S208 1 216 7S232 13 240 7S256 1 264 7S280 13 288 7S304 1 312 7S328 13 336 7S352 1 360 7S376 13 384 7S400 1 408 7S424 13 432 7S448 1 456 7S472 13 480 7S496 1 504 7S520 13 528 7S544 1 552 7S568 13 576 7S592 1 600 7S616 13 624 7S640 1 648 7S664 13 672 7S688 1 696 7S712 13 720 7S736 1 744 7S760 13 768 7S784 1 792 7S808 13 816 7S832 1 840 7S856 13 864 7S880 1 888 7S904 13 912 7S928 1 936 7S952 13 960 7' fill='none' stroke='%2345b6a8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")) no-repeat left center;
   content: "";
 }
 
@@ -224,7 +224,7 @@ section:not(.hero) > .container::after,
 
   /* underline starts under the text, not under the node in front of it */
   .section-heading::after {
-    width: calc(100% - 26px);
+    width: var(--ul-w, calc(100% - 26px));
     margin-left: 26px;
   }
 

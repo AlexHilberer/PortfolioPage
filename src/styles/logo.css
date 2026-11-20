@@ -60,9 +60,9 @@
 
 /* all four dashes close and open together */
 @keyframes logo-ring {
-  0%, 4% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
-  28%, 66% { stroke-dasharray: 100 0; stroke-dashoffset: 0; }
-  90%, 100% { stroke-dasharray: 42 58; stroke-dashoffset: -29; }
+  0%, 4% { stroke-dasharray: 98.97 400; stroke-dashoffset: -68.34; }
+  28%, 66% { stroke-dasharray: 236.5 400; stroke-dashoffset: 0.42; }
+  90%, 100% { stroke-dasharray: 98.97 400; stroke-dashoffset: -68.34; }
 }
 
 
@@ -93,7 +93,7 @@
 .logo--intro .logo__node:nth-child(4) { animation-delay: 0.36s; } /* bottom */
 
 .logo--intro .logo__wave {
-  stroke-dasharray: 100 100;
+  stroke-dasharray: 337 337;
   animation: logo-intro-wave 2.2s linear both;
 }
 
@@ -131,15 +131,15 @@
 }
 
 @keyframes logo-intro-wave {
-  0%, 20% { stroke-dashoffset: 100; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  0%, 20% { stroke-dashoffset: 337; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
   43%, 100% { stroke-dashoffset: 0; }
 }
 
 @keyframes logo-intro-ring {
-  0%, 40% { opacity: 0; stroke-dasharray: 0 100; stroke-dashoffset: -50; }
-  43% { opacity: 1; stroke-dasharray: 0 100; stroke-dashoffset: -50; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
-  64% { opacity: 1; stroke-dasharray: 100 0; stroke-dashoffset: 0; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
-  95%, 100% { opacity: 1; stroke-dasharray: 42 58; stroke-dashoffset: -29; }
+  0%, 40% { opacity: 0; stroke-dasharray: 0 400; stroke-dashoffset: -117.83; }
+  43% { opacity: 1; stroke-dasharray: 0 400; stroke-dashoffset: -117.83; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  64% { opacity: 1; stroke-dasharray: 236.5 400; stroke-dashoffset: 0.42; animation-timing-function: cubic-bezier(0.65, 0, 0.3, 1); }
+  95%, 100% { opacity: 1; stroke-dasharray: 98.97 400; stroke-dashoffset: -68.34; }
 }
 
 @keyframes logo-intro-aura {

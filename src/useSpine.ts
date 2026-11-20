@@ -25,7 +25,7 @@ export function useSpine() {
     type Span = { element: HTMLElement; start: number; length: number };
     let spans: Span[] = [];
     let nodes: { element: Element; y: number }[] = [];
-    let link: { start: number; end: number } | null = null;
+    let link: { start: number; end: number; length: number } | null = null;
 
     const measure = () => {
       const scroll = window.scrollY;
@@ -65,7 +65,10 @@ export function useSpine() {
         linkSvg.setAttribute("width", String(Math.ceil(base.width)));
         linkSvg.setAttribute("height", String(Math.ceil(y2 + 4)));
         linkSvg.classList.add("is-drawn");
-        link = { start: y1 + base.top + scroll, end: y2 + base.top + scroll };
+        // Absolute dash length (not pathLength, which mobile browsers render inconsistently).
+        const length = linkFill ? linkFill.getTotalLength() : 0;
+        if (linkFill) linkFill.style.strokeDasharray = `${length} ${length}`;
+        link = { start: y1 + base.top + scroll, end: y2 + base.top + scroll, length };
       } else {
         linkSvg?.classList.remove("is-drawn");
       }
@@ -87,7 +90,7 @@ export function useSpine() {
       if (link && linkFill) {
         // The wave fills over the first part of the scroll, before the spine starts.
         const progress = clamp((pen - link.start) / (link.end - link.start));
-        linkFill.style.strokeDashoffset = String(1 - progress);
+        linkFill.style.strokeDashoffset = String(link.length * (1 - progress));
       }
     };
     const onScroll = () => {
