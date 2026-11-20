@@ -85,7 +85,7 @@ Once per browser session (per tab), the home pages (`/`, `/en/`) open with a sho
 
 - The inline script in `index.html` decides before the first paint (skips `#section` links, reduced motion, the 404 page and later visits in the same session) and has a failsafe that shows the page if the app never starts.
 - `src/useIntro.ts` runs the sequence; any scroll, tap, click or key press skips it. Styles: `src/styles/intro.css` and the `logo-intro-*` keyframes in `src/styles/logo.css`.
-- To see it again, open the site in a new tab or private window.
+- To see it again, open the site in a new tab or private window, or add `?intro` to the URL (`/?intro`, `/en/?intro`). A normal or hard refresh in the same tab does not replay it.
 
 ## Fonts and share image
 
