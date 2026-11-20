@@ -25,7 +25,7 @@ export const legalContent: Record<LangCode, Record<LegalPageId, LegalDoc>> = {
       title: "Impressum",
       updated: "Stand: November 2026",
       sections: [
-        { heading: "Angaben gemäß § 5 DDG", paragraphs: [[profile.name], ["Saarland, Deutschland"]] },
+        { paragraphs: [[profile.name], ["Saarland, Deutschland"]] },
         { heading: "Kontakt", paragraphs: [["E-Mail: ", email]] },
         { heading: "Verantwortlich für den Inhalt", paragraphs: [[profile.name]] },
         {
@@ -120,10 +120,7 @@ export const legalContent: Record<LangCode, Record<LegalPageId, LegalDoc>> = {
       title: "Legal notice",
       updated: "Last updated: November 2026",
       sections: [
-        {
-          heading: "Information pursuant to § 5 DDG (German Digital Services Act)",
-          paragraphs: [[profile.name], ["Saarland, Germany"]]
-        },
+        { paragraphs: [[profile.name], ["Saarland, Germany"]] },
         { heading: "Contact", paragraphs: [["Email: ", email]] },
         { heading: "Responsible for the content", paragraphs: [[profile.name]] },
         {
