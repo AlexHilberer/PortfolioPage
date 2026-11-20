@@ -126,11 +126,6 @@ export function Work({ lang }: { lang: LangCode }) {
                 <li key={key}>{t(`work.now.focus.${key}`)}</li>
               ))}
             </ul>
-            <ul className="tag-list">
-              {currentRole.tech.map((tech) => (
-                <li className="tag" key={tech}>{tech}</li>
-              ))}
-            </ul>
             <a className="text-link" href={profile.resume[lang]} download target="_blank" rel="noopener">
               {t("work.resumeLinkLabel")}
               <ArrowIcon />

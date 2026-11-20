@@ -107,6 +107,8 @@ section:not(.hero) > .container::after,
 
 .section-heading {
   position: relative;
+  width: fit-content;
+  max-width: 100%;
   margin-bottom: 0.55em;
   color: var(--color-text);
   font-size: clamp(1.9rem, 3.4vw, 2.6rem);
@@ -134,14 +136,14 @@ section:not(.hero) > .container::after,
   box-shadow: 0 0 0 6px var(--color-bg);
 }
 
-/* the logo's wave as an underline */
+/* the logo's wave as an underline, exactly as wide as the heading */
 .section-heading::after {
   display: block;
-  width: 96px;
+  width: 100%;
   height: 14px;
   margin-top: 12px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14' viewBox='0 0 96 14'%3E%3Cpath d='M2 7C12 0 24 14 36 7S60 0 72 7 90 12 94 7' fill='none' stroke='%2345b6a8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='14' viewBox='0 0 48 14'%3E%3Cpath d='M0 7C8 1 16 1 24 7S40 13 48 7' fill='none' stroke='%2345b6a8' stroke-width='2.5'/%3E%3C/svg%3E")
+    repeat-x left center / 48px 14px;
   content: "";
 }
 
@@ -214,6 +216,12 @@ section:not(.hero) > .container::after,
     border-width: 2.5px;
     box-shadow: 0 0 14px rgba(69, 182, 168, 0.5);
     vertical-align: 0.1em;
+  }
+
+  /* underline starts under the text, not under the node in front of it */
+  .section-heading::after {
+    width: calc(100% - 26px);
+    margin-left: 26px;
   }
 
   .projects-grid {

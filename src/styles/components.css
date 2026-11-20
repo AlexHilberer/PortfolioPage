@@ -447,7 +447,7 @@
 .work-now__focus {
   display: grid;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .work-now__focus li {
@@ -469,9 +469,6 @@
   content: "";
 }
 
-.work-now .tag-list {
-  margin-bottom: 20px;
-}
 
 .text-link {
   display: inline-flex;
