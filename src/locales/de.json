@@ -141,5 +141,9 @@
     "heading": "Seite nicht gefunden",
     "text": "Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite.",
     "home": "Zur Startseite"
+  },
+  "legal": {
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz"
   }
 }

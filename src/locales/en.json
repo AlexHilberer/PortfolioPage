@@ -141,5 +141,9 @@
     "heading": "Page not found",
     "text": "This page does not exist (anymore). The home page might help.",
     "home": "Back to the home page"
+  },
+  "legal": {
+    "impressum": "Legal notice",
+    "datenschutz": "Privacy"
   }
 }

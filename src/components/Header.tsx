@@ -46,7 +46,15 @@ function useActiveSection(): string | null {
   return active;
 }
 
-export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: string }) {
+export function Header({
+  lang,
+  linkBase = "",
+  langPaths
+}: {
+  lang: LangCode;
+  linkBase?: string;
+  langPaths?: Record<LangCode, string>;
+}) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -113,7 +121,7 @@ export function Header({ lang, linkBase = "" }: { lang: LangCode; linkBase?: str
               {t(`nav.${link}`)}
             </a>
           ))}
-          <LanguageSwitcher current={lang} />
+          <LanguageSwitcher current={lang} paths={langPaths} />
         </nav>
       </div>
     </header>

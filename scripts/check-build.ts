@@ -1,7 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { LANGUAGES, OG_IMAGE_PATH, SITE_URL, absoluteUrl } from "../src/i18n/config";
+import { LANGUAGES, LEGAL_PATHS, OG_IMAGE_PATH, SITE_URL, absoluteUrl } from "../src/i18n/config";
 import { locales } from "../src/i18n";
 import { exploring } from "../src/data/exploring";
 import { projects } from "../src/data/projects";
@@ -95,6 +95,22 @@ expect(notFound.includes('class="nav"') && notFound.includes("lang-toggle"), "40
 expect(notFound.includes(locales[LANGUAGES[0].code].notFound.heading), "404.html is missing the default-language text");
 for (const { path: langPath } of LANGUAGES) {
   expect(notFound.includes(`href="${langPath}"`), `404.html is missing a link to ${langPath}`);
+}
+
+// 4. Impressum / privacy pages and the footer links to them.
+for (const [page, paths] of Object.entries(LEGAL_PATHS)) {
+  for (const { code } of LANGUAGES) {
+    const target = paths[code as keyof typeof paths];
+    const file = path.join("dist", target, "index.html");
+    const html = await readFile(path.join(rootDir, file), "utf8").catch(() => "");
+    expect(html !== "", `${file} is missing (${page})`);
+    expect(html.includes(`<html lang="${code}">`), `${file} has the wrong language`);
+    expect(html.includes('name="robots" content="noindex'), `${file} must be noindex`);
+    expect(html.includes(profile.name) && html.includes(profile.email), `${file} is missing name or e-mail`);
+    expect(!html.includes("<!--app-"), `${file} contains an unreplaced template placeholder`);
+    const home = await readFile(path.join(rootDir, "dist", LANGUAGES.find((l) => l.code === code)!.path, "index.html"), "utf8");
+    expect(home.includes(`href="${target}"`), `home page (${code}) footer is missing a link to ${target}`);
+  }
 }
 
 const sitemap = await readFile(path.join(rootDir, "dist/sitemap.xml"), "utf8");

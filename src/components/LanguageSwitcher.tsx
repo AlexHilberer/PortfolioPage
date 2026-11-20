@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { LANGUAGES, LANG_STORAGE_KEY, type LangCode } from "../i18n/config";
 
-export function LanguageSwitcher({ current }: { current: LangCode }) {
+/** `paths` lets a page link to its own counterpart (e.g. Impressum ↔ Legal notice). */
+export function LanguageSwitcher({ current, paths }: { current: LangCode; paths?: Record<LangCode, string> }) {
   const { t } = useTranslation();
 
   return (
@@ -12,7 +13,7 @@ export function LanguageSwitcher({ current }: { current: LangCode }) {
           <a
             key={language.code}
             className={"lang-toggle__button" + (active ? " is-active" : "")}
-            href={language.path}
+            href={paths?.[language.code] ?? language.path}
             hrefLang={language.code}
             lang={language.code}
             aria-current={active ? "true" : undefined}

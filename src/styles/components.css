@@ -855,11 +855,98 @@
 }
 
 .footer__copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  justify-content: flex-end;
   margin: 0 0 0 auto;
   text-align: right;
   font-size: 0.82rem;
 }
 
+
+.footer__legal {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.footer__legal a {
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.footer__legal a:hover {
+  color: var(--color-accent);
+}
+
+/* ===================== Impressum / Datenschutz ===================== */
+.legal {
+  padding-top: clamp(48px, 7vw, 88px);
+}
+
+.legal .section-heading {
+  /* small enough on phones for "Datenschutzerklärung" to fit next to its node */
+  font-size: clamp(1.55rem, 6.5vw, 2.8rem);
+}
+
+.legal__body {
+  max-width: 720px;
+  margin-top: 28px;
+  color: var(--color-text-muted);
+}
+
+.legal__section + .legal__section {
+  margin-top: 28px;
+}
+
+.legal__section h2 {
+  margin: 0 0 8px;
+  color: var(--color-text);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.legal__section p {
+  margin: 0 0 10px;
+}
+
+.legal__section ul {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 12px;
+}
+
+.legal__section li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.legal__section li::before {
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  content: "";
+}
+
+.legal__link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-line);
+  text-underline-offset: 3px;
+}
+
+.legal__link:hover {
+  color: var(--color-accent-bright);
+}
+
+.legal__updated {
+  margin-top: 36px;
+  font-size: 0.85rem;
+}
 
 /* ===================== 404 ===================== */
 .not-found {
@@ -1005,6 +1092,7 @@
   }
 
   .footer__copy {
+    justify-content: center;
     margin: 0;
     text-align: center;
   }

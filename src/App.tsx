@@ -4,9 +4,10 @@ import { useSpine } from "./useSpine";
 import { useIntro } from "./useIntro";
 import { useUnderlines } from "./useUnderlines";
 import type { i18n } from "i18next";
-import { getLanguage, type LangCode } from "./i18n/config";
+import { LEGAL_PATHS, getLanguage, type LangCode, type LegalPage as LegalPageId } from "./i18n/config";
 import { Header } from "./components/Header";
 import { NotFound } from "./components/NotFound";
+import { LegalPage } from "./components/Legal";
 import { About, Credentials, Footer, Hero, Projects, Work } from "./components/Sections";
 
 export function App({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
@@ -44,6 +45,20 @@ export function NotFoundApp({ lang, i18n }: { lang: LangCode; i18n: i18n }) {
         <NotFound lang={lang} />
       </main>
       <Footer />
+    </I18nextProvider>
+  );
+}
+
+/** Impressum / privacy page: site header and footer, language switch to the counterpart page. */
+export function LegalApp({ lang, i18n, page }: { lang: LangCode; i18n: i18n; page: LegalPageId }) {
+  useUnderlines();
+  return (
+    <I18nextProvider i18n={i18n}>
+      <Header lang={lang} linkBase={getLanguage(lang).path} langPaths={LEGAL_PATHS[page]} />
+      <main>
+        <LegalPage lang={lang} page={page} />
+      </main>
+      <Footer spine />
     </I18nextProvider>
   );
 }

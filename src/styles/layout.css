@@ -68,6 +68,18 @@ section:not(.hero) > .container::after,
   top: calc(clamp(1.9rem, 3.4vw, 2.6rem) * 0.3 + 11px);
 }
 
+/* legal pages: from the page heading's node down into the contact node
+   (section.legal to outrank the general spine rule) */
+section.legal > .container {
+  /* keep the last paragraph's margin inside, so the line reaches the section end */
+  display: flow-root;
+}
+
+section.legal > .container::before,
+section.legal > .container::after {
+  top: calc(clamp(1.55rem, 6.5vw, 2.8rem) * 0.3 + 11px);
+}
+
 /* the footer (#contact) is the last node: the line ends there */
 .footer--spine > .container::before,
 .footer--spine > .container::after {

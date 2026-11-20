@@ -79,6 +79,10 @@ The site is built around the logo: a ring of four **nodes**, **links** between t
 
 `src/components/LogoMark.tsx` draws the logo. `uid` must be unique per instance on a page (it namespaces the SVG filter and gradient ids); `animated`, `glow` and `decor` are only used in the hero. Colours come from the tokens in `src/styles/theme.css`, so the logo follows the theme. Motion stops for visitors with `prefers-reduced-motion`.
 
+## Impressum and privacy policy
+
+`/impressum/` and `/datenschutz/` (English: `/en/legal-notice/`, `/en/privacy/`) are prerendered pages in the site design, `noindex`, linked in the footer bar. Their texts live in `src/content/legal.ts` and only use information that is already public on the site (name, region, e-mail); the privacy policy describes what the site actually does (GitHub Pages hosting, no cookies or tracking, self-hosted fonts, two browser-storage entries). Update it when that changes. Paths are configured in `LEGAL_PATHS` (`src/i18n/config.ts`); the language switch on these pages links to the counterpart page.
+
 ## Startup intro
 
 On the first visit of a browser session (per tab) and on every reload, the home pages (`/`, `/en/`) open with a short intro: the hero logo starts centred on screen, its nodes pop in, the wave draws, the ring closes, and then the logo glides into its normal place while the page fades in. It is the real hero logo, so the hand-over is seamless.

@@ -40,3 +40,20 @@ export function langFromPath(pathname: string): LangCode {
 export function absoluteUrl(code: LangCode): string {
   return SITE_URL + getLanguage(code).path;
 }
+
+/** Legal pages per language (prerendered, noindex). */
+export const LEGAL_PATHS = {
+  impressum: { de: "/impressum/", en: "/en/legal-notice/" },
+  datenschutz: { de: "/datenschutz/", en: "/en/privacy/" }
+} as const satisfies Record<string, Record<LangCode, string>>;
+
+export type LegalPage = keyof typeof LEGAL_PATHS;
+
+/** Which legal page a URL path belongs to, if any. */
+export function legalPageFromPath(pathname: string): LegalPage | null {
+  const normalized = pathname.endsWith("/") ? pathname : pathname + "/";
+  for (const [page, paths] of Object.entries(LEGAL_PATHS) as [LegalPage, Record<LangCode, string>][]) {
+    if (Object.values(paths).includes(normalized)) return page;
+  }
+  return null;
+}

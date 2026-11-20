@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { LANGUAGES, OG_IMAGE_PATH, OG_IMAGE_SIZE, SITE_URL, absoluteUrl, getLanguage, type LangCode } from "../src/i18n/config";
+import { LANGUAGES, LEGAL_PATHS, OG_IMAGE_PATH, OG_IMAGE_SIZE, SITE_URL, absoluteUrl, getLanguage, type LangCode, type LegalPage } from "../src/i18n/config";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(rootDir, "dist");
@@ -130,6 +130,24 @@ async function prerender() {
       "</urlset>"
     ].join("\n") + "\n"
   );
+
+  // Impressum / privacy pages: one per language, not indexed.
+  for (const page of Object.keys(LEGAL_PATHS) as LegalPage[]) {
+    for (const language of LANGUAGES) {
+      const doc = mod.legalContent[language.code][page];
+      const head = [
+        `<title>${escapeHtml(doc.title)} | ${escapeHtml(mod.profile.name)}</title>`,
+        `<meta name="robots" content="noindex, follow" />`
+      ].join("\n  ");
+      const html = template
+        .replace(/<html lang="[^"]*">/, `<html lang="${language.code}">`)
+        .replace("<!--app-head-->", () => head)
+        .replace("<!--app-html-->", () => mod.renderLegal(language.code, page));
+      const outDir = path.join(distDir, LEGAL_PATHS[page][language.code]);
+      await mkdir(outDir, { recursive: true });
+      await writeFile(path.join(outDir, "index.html"), html);
+    }
+  }
 
   // GitHub Pages serves 404.html (with a 404 status) for unknown paths.
   await writeFile(path.join(distDir, "404.html"), buildNotFound(template, mod));

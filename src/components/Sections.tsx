@@ -3,7 +3,7 @@ import { certifications, type Certification } from "../data/certifications";
 import { exploring } from "../data/exploring";
 import { currentRole, profile } from "../data/profile";
 import { projects } from "../data/projects";
-import type { LangCode } from "../i18n/config";
+import { LEGAL_PATHS, type LangCode } from "../i18n/config";
 import {
   ArrowIcon,
   DownloadIcon,
@@ -236,7 +236,8 @@ export function Credentials() {
  * the page spine. `spine` draws the line into it (main page only, not the 404).
  */
 export function Footer({ spine = false }: { spine?: boolean }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language as LangCode;
   return (
     <footer id="contact" className={"footer" + (spine ? " footer--spine" : "")}>
       <div className="container">
@@ -267,7 +268,13 @@ export function Footer({ spine = false }: { spine?: boolean }) {
             </div>
           </div>
           <p className="footer__copy">
-            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name}
+            <span>
+              © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name}
+            </span>
+            <span className="footer__legal">
+              <a href={LEGAL_PATHS.impressum[lang]}>{t("legal.impressum")}</a>
+              <a href={LEGAL_PATHS.datenschutz[lang]}>{t("legal.datenschutz")}</a>
+            </span>
           </p>
         </div>
       </div>
