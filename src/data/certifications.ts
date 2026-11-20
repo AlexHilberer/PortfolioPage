@@ -57,7 +57,7 @@ export const certifications: Certification[] = [
   },
   {
     id: "gcp-mle",
-    code: "GCP MLE",
+    code: "GCP PMLE",
     name: "Professional Machine Learning Engineer",
     issuer: "Google",
     issuerIcon: "gcp",
