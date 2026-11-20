@@ -45,7 +45,9 @@ if (container.hasAttribute("data-not-found")) {
       <App lang={lang} i18n={i18n} />
     </StrictMode>
   );
-  if (container.hasChildNodes()) {
+  // Prerendered pages contain the app markup; the dev server only has the
+  // <!--app-html--> placeholder comment, so check for an element.
+  if (container.firstElementChild) {
     hydrateRoot(container, app);
   } else {
     createRoot(container).render(app);

@@ -9,7 +9,7 @@ const REVEAL_START = 1550; // page content fades in
 let started = false;
 
 /**
- * Startup animation, once per browser session, home pages only.
+ * Startup animation on the home pages: first visit of a session and every reload.
  *
  * The inline script in index.html decides before the first paint and marks
  * <html> with `intro-pending` (the page stays hidden; it has a failsafe that

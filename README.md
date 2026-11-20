@@ -81,11 +81,11 @@ The site is built around the logo: a ring of four **nodes**, **links** between t
 
 ## Startup intro
 
-Once per browser session (per tab), the home pages (`/`, `/en/`) open with a short intro: the hero logo starts centred on screen, its nodes pop in, the wave draws, the ring closes, and then the logo glides into its normal place while the page fades in. It is the real hero logo, so the hand-over is seamless.
+On the first visit of a browser session (per tab) and on every reload, the home pages (`/`, `/en/`) open with a short intro: the hero logo starts centred on screen, its nodes pop in, the wave draws, the ring closes, and then the logo glides into its normal place while the page fades in. It is the real hero logo, so the hand-over is seamless.
 
-- The inline script in `index.html` decides before the first paint (skips `#section` links, reduced motion, the 404 page and later visits in the same session) and has a failsafe that shows the page if the app never starts.
+- The inline script in `index.html` decides before the first paint (skips navigation within the site such as the language switch or back/forward, `#section` links, reduced motion and the 404 page) and has a failsafe that shows the page if the app never starts.
 - `src/useIntro.ts` runs the sequence; any scroll, tap, click or key press skips it. Styles: `src/styles/intro.css` and the `logo-intro-*` keyframes in `src/styles/logo.css`.
-- To see it again, open the site in a new tab or private window, or add `?intro` to the URL (`/?intro`, `/en/?intro`). A normal or hard refresh in the same tab does not replay it.
+- To see it again, reload the page (normal or hard refresh both count), or add `?intro` to the URL.
 
 ## Fonts and share image
 

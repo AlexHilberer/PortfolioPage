@@ -4,15 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>
-    /* Startup intro: once per browser session, home pages only ("/" and "/en/"),
-       not for #section links or reduced motion; add ?intro to the URL to replay it. The page stays hidden until
+    /* Startup intro on the home pages ("/" and "/en/"): on the first visit of a
+       session and on every reload, not when navigating within the site, for
+       #section links or reduced motion; add ?intro to the URL to replay it. The page stays hidden until
        src/useIntro.ts takes over; the timeout shows it anyway if that never happens. */
     (function () {
       try {
         var d = document.documentElement;
         var force = /[?&]intro\b/.test(location.search); /* ?intro replays it on demand */
-        if (location.hash || (sessionStorage.getItem("site:intro") && !force)) return;
-        if (!/^\/(en\/)?(index\.html)?$/.test(location.pathname)) return;
+        /* every reload (normal or hard: browsers report both as "reload") replays it */
+        var nav = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        var reload = nav ? nav.type === "reload" : performance.navigation && performance.navigation.type === 1;
+        if (location.hash || (sessionStorage.getItem("site:intro") && !force && !reload)) return;
+        if (!/^\/(en(\/(index\.html)?)?|index\.html)?$/.test(location.pathname)) return;
         if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         d.classList.add("intro-pending");
         setTimeout(function () { d.classList.remove("intro-pending"); }, 2500);
