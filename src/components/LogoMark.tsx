@@ -87,6 +87,7 @@ export function LogoMark({ uid, animated = false, glow = false, decor = false, l
 
       <path
         className="logo__wave"
+        pathLength={100}
         d={WAVE}
         fill="none"
         strokeLinecap="round"
@@ -99,7 +100,7 @@ export function LogoMark({ uid, animated = false, glow = false, decor = false, l
         <circle className="logo__node logo__node--light" cx="106" cy="256" r="32" />
         <circle className="logo__node logo__node--light" cx="406" cy="256" r="32" />
         <circle className="logo__node logo__node--accent" cx="256" cy="106" r="32" />
-        <circle className="logo__node logo__node--accent" cx="256" cy="406" r="32" />
+        <circle className="logo__node logo__node--accent logo__node--bottom" cx="256" cy="406" r="32" />
       </g>
     </svg>
   );

@@ -5,7 +5,7 @@ import { LogoMark } from "./LogoMark";
 export function NotFound({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();
   return (
-    <section className="hero not-found">
+    <section className="hero not-found" id="top">
       <div className="container">
         <LogoMark uid="nf" animated glow className="not-found__logo" label="404" />
         <p className="hero__role">404</p>

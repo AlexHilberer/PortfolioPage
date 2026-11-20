@@ -68,7 +68,18 @@
     "story3": "Am Anfang bin ich damit ziemlich auf die Nase gefallen, die Mathematik war deutlich härter als gedacht, aber mit ein paar zu vielen durchgemachten Nächten habe ich die Lücken aufgeholt.",
     "story4": "Parallel dazu bin ich als Werkstudent bei PREVISIONZ eingestiegen und habe dort zum ersten Mal gesehen, wie Datenplattformen auf Enterprise-Niveau wirklich aussehen. Irgendwann kam der Gedanke: Wenn das in der Cloud funktioniert, bekomme ich das eigentlich auch selbst hin, mit Open Source und eigener Hardware. Genau daraus sind meine ersten eigenen Projekte entstanden.",
     "outro": "Heute arbeite ich Vollzeit als BI & Data Science Consultant bei PREVISIONZ in Saarbrücken und baue für Kunden Cloud-Plattformen und ML-Workflows.",
-    "resumeLinkLabel": "Vollständiger Lebenslauf"
+    "resumeLinkLabel": "Vollständiger Lebenslauf",
+    "now": {
+      "label": "Heute",
+      "since": "seit {{date}}",
+      "focusHeading": "Aktuelle Schwerpunkte",
+      "focus": {
+        "agentic": "Agentische KI-Lösung zur Simulation und Analyse von Vertriebsdaten",
+        "mlops": "End-to-End-MLOps-Workflow in Azure Machine Learning zur Klassifikation von Kundenabwanderung",
+        "recommender": "Empfehlungssystem für Bankprodukte mit hybriden kollaborativen Filterverfahren",
+        "fabric": "Migration von Azure Synapse Analytics zu Microsoft Fabric"
+      }
+    }
   },
   "certifications": {
     "heading": "Zertifizierungen",

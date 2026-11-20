@@ -68,7 +68,18 @@
     "story3": "I fell flat on my face early on, the math was a lot harder than I expected, but with a few too many sleepless nights I caught up.",
     "story4": "Around the same time I started as a working student at PREVISIONZ and saw for the first time what enterprise-grade data platforms actually look like. At some point it clicked: if this works in the cloud, I can probably pull it off myself too, with open source and my own hardware. That is exactly where my first personal projects came from.",
     "outro": "Today I work full time as a BI & Data Science Consultant at PREVISIONZ in Saarbrücken, building cloud platforms and ML workflows for clients.",
-    "resumeLinkLabel": "Full résumé"
+    "resumeLinkLabel": "Full résumé",
+    "now": {
+      "label": "Today",
+      "since": "since {{date}}",
+      "focusHeading": "Current focus",
+      "focus": {
+        "agentic": "Agentic AI solution to simulate and analyse sales data",
+        "mlops": "End-to-end MLOps workflow in Azure Machine Learning for customer churn classification",
+        "recommender": "Recommendation system for banking products using hybrid collaborative filtering",
+        "fabric": "Migration from Azure Synapse Analytics to Microsoft Fabric"
+      }
+    }
   },
   "certifications": {
     "heading": "Credentials",

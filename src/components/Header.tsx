@@ -16,8 +16,17 @@ function useActiveSection(): string | null {
       .map((id) => document.getElementById(id))
       .filter((element): element is HTMLElement => element !== null);
     if (elements.length === 0) return;
+    // The footer (#contact) is too short to reach the middle of tall screens:
+    // at the very end of the page it is the active entry.
+    const atEnd = () =>
+      window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4 &&
+      document.getElementById("contact") !== null;
     const observer = new IntersectionObserver(
       (entries) => {
+        if (atEnd()) {
+          setActive("contact");
+          return;
+        }
         for (const entry of entries) {
           if (entry.isIntersecting) setActive(entry.target.id === "top" ? null : entry.target.id);
         }
@@ -25,7 +34,14 @@ function useActiveSection(): string | null {
       { rootMargin: "-45% 0px -50% 0px" }
     );
     elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    const onScroll = () => {
+      if (atEnd()) setActive("contact");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
   return active;
 }

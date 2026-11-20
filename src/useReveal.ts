@@ -9,6 +9,7 @@ const TARGETS = [
   ".principles-list",
   ".exploring",
   ".work-step",
+  ".work-now",
   ".project-entry",
   ".credentials-more",
   ".cert-card",

@@ -101,3 +101,12 @@ export const ArrowIcon = () => (
     <path d="m13 6 6 6-6 6" />
   </svg>
 );
+
+export const DownloadIcon = () => (
+  <svg {...common} {...stroke}>
+    <path d="M12 4v11" />
+    <path d="m7 10 5 5 5-5" />
+    <path d="M5 20h14" />
+  </svg>
+);
+

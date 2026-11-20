@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { certifications, type Certification } from "../data/certifications";
 import { exploring } from "../data/exploring";
-import { profile } from "../data/profile";
+import { currentRole, profile } from "../data/profile";
 import { projects } from "../data/projects";
 import type { LangCode } from "../i18n/config";
 import {
   ArrowIcon,
+  DownloadIcon,
   GithubIcon,
   IssuerIcon,
   LinkedinIcon,
@@ -32,16 +33,11 @@ export function Hero({ lang }: { lang: LangCode }) {
           <div className="hero__actions">
             <a className="button button--primary" href="#projects">{t("hero.ctaProjects")}</a>
             <a className="button button--secondary" href="#contact">{t("hero.ctaContact")}</a>
-            <a
-              className="button button--secondary"
-              href={profile.resume[lang]}
-              download
-              target="_blank"
-              rel="noopener"
-            >
-              {t("hero.ctaResume")}
-            </a>
           </div>
+          <a className="text-link hero__resume" href={profile.resume[lang]} download target="_blank" rel="noopener">
+            <DownloadIcon />
+            {t("hero.ctaResume")}
+          </a>
         </div>
         <div className="hero__art">
           <LogoMark uid="hero" animated glow decor label={profile.name} />
@@ -92,23 +88,54 @@ export function About() {
 
 const STORY = ["story1", "story2", "story3", "story4"] as const;
 
+function formatMonth(value: string, lang: LangCode): string {
+  const [year, month] = value.split("-").map(Number);
+  return new Intl.DateTimeFormat(lang, { month: "2-digit", year: "numeric", timeZone: "UTC" }).format(
+    new Date(Date.UTC(year, month - 1, 1))
+  );
+}
+
 export function Work({ lang }: { lang: LangCode }) {
   const { t } = useTranslation();
   return (
     <section id="work">
       <div className="container">
         <h2 className="section-heading">{t("work.heading")}</h2>
-        <div className="work-steps">
-          {STORY.map((key) => (
-            <p className="work-step" key={key}>{t(`work.${key}`)}</p>
-          ))}
-          <div className="work-step work-step--now">
-            <p>{t("work.outro")}</p>
+        <div className="work-layout">
+          <div className="work-steps">
+            {STORY.map((key) => (
+              <p className="work-step" key={key}>{t(`work.${key}`)}</p>
+            ))}
+            <p className="work-step work-step--last">{t("work.outro")}</p>
+          </div>
+          <aside className="work-now">
+            <div className="work-now__head">
+              <LogoMark uid="work" className="work-now__logo" />
+              <div>
+                <p className="work-now__label">
+                  {t("work.now.label")}
+                  <span> · {t("work.now.since", { date: formatMonth(currentRole.since, lang) })}</span>
+                </p>
+                <h3 className="work-now__role">{currentRole.role}</h3>
+                <p className="work-now__place">{currentRole.company} · {currentRole.city}</p>
+              </div>
+            </div>
+            <p className="work-now__heading">{t("work.now.focusHeading")}</p>
+            <ul className="work-now__focus">
+              {currentRole.focus.map((key) => (
+                <li key={key}>{t(`work.now.focus.${key}`)}</li>
+              ))}
+            </ul>
+            <ul className="tag-list">
+              {currentRole.tech.map((tech) => (
+                <li className="tag" key={tech}>{tech}</li>
+              ))}
+            </ul>
             <a className="text-link" href={profile.resume[lang]} download target="_blank" rel="noopener">
               {t("work.resumeLinkLabel")}
               <ArrowIcon />
             </a>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -209,40 +236,45 @@ export function Credentials() {
   );
 }
 
-export function Contact() {
+/**
+ * The footer doubles as the contact section (#contact) and is the last node on
+ * the page spine. `spine` draws the line into it (main page only, not the 404).
+ */
+export function Footer({ spine = false }: { spine?: boolean }) {
   const { t } = useTranslation();
   return (
-    <section id="contact">
+    <footer id="contact" className={"footer" + (spine ? " footer--spine" : "")}>
       <div className="container">
         <h2 className="section-heading">{t("contact.heading")}</h2>
-        <p className="contact__intro">{t("contact.intro")}</p>
-        <div className="contact__links">
-          <a className="contact__link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">
-            <span className="contact__link-icon"><GithubIcon /></span>
-            <span>{t("contact.github")}</span>
-          </a>
-          <a className="contact__link" href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">
-            <span className="contact__link-icon"><LinkedinIcon /></span>
-            <span>{t("contact.linkedin")}</span>
-          </a>
-          <a className="contact__link" href={"mailto:" + profile.email}>
-            <span className="contact__link-icon"><MailIcon /></span>
-            <span>{profile.email}</span>
-          </a>
+        <div className="footer__contact">
+          <p className="contact__intro">{t("contact.intro")}</p>
+          <div className="contact__links">
+            <a className="contact__link" href={"mailto:" + profile.email}>
+              <span className="contact__link-icon"><MailIcon /></span>
+              <span>{profile.email}</span>
+            </a>
+            <a className="contact__link" href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">
+              <span className="contact__link-icon"><LinkedinIcon /></span>
+              <span>{t("contact.linkedin")}</span>
+            </a>
+            <a className="contact__link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">
+              <span className="contact__link-icon"><GithubIcon /></span>
+              <span>{t("contact.github")}</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container footer__inner">
-        <LogoMark uid="foot" className="footer__logo" />
-        <span>
-          © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name}
-        </span>
+        <div className="footer__bottom">
+          <div className="footer__brand">
+            <LogoMark uid="foot" className="footer__logo" />
+            <div>
+              <strong>{profile.name}</strong>
+              <span>{t("hero.role")}</span>
+            </div>
+          </div>
+          <p className="footer__copy">
+            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name}
+          </p>
+        </div>
       </div>
     </footer>
   );

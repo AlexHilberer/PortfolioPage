@@ -31,11 +31,15 @@
   --ease: cubic-bezier(0.65, 0, 0.3, 1);
 }
 
+/* Background: the original site's dot grid, under two soft teal glows. */
 body {
   background-color: var(--color-bg);
   background-image:
     radial-gradient(900px 520px at 88% -6%, rgba(69, 182, 168, 0.13), transparent 70%),
-    radial-gradient(700px 480px at -8% 38%, rgba(69, 182, 168, 0.06), transparent 70%);
-  background-repeat: no-repeat;
+    radial-gradient(700px 480px at -8% 38%, rgba(69, 182, 168, 0.06), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 24px 24px;
   color: var(--color-text);
 }
+

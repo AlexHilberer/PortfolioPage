@@ -10,3 +10,13 @@ export const profile = {
     en: "/assets/resume/Alexander_Hilberer_Resume.pdf"
   } satisfies Record<LangCode, string>
 };
+
+/** Current position, shown in the "Today" card. Proper nouns, not translated. */
+export const currentRole = {
+  role: "BI & Data Science Consultant",
+  company: "PREVISIONZ",
+  city: "Saarbrücken",
+  since: "2025-10",
+  focus: ["agentic", "mlops", "recommender", "fabric"],
+  tech: ["Azure Machine Learning", "Microsoft Fabric", "Azure Synapse", "Agentic AI"]
+} as const;
