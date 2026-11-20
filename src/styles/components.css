@@ -983,22 +983,15 @@
     padding: 24px;
   }
 
-  /* footer centred on phones */
-  .footer .section-heading {
-    margin-right: auto;
-    margin-left: auto;
-  }
-
   .footer__contact {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
   }
 
   .contact__links {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
+  /* only the bottom bar (logo, name, copyright) is centred on phones */
   .footer__bottom {
     flex-direction: column;
     gap: 14px;
