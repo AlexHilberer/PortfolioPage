@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
 /** Elements that fade in once as they scroll into view. */
+// Headings and story steps are deliberately not faded: they carry the spine
+// nodes, which must always sit solid in the foreground above the line.
 const TARGETS = [
-  ".section-heading",
   ".section-intro",
   ".about__intro",
   ".about__personal",
   ".principles-list",
   ".exploring",
-  ".work-step",
   ".work-now",
   ".project-entry",
   ".credentials-more",
