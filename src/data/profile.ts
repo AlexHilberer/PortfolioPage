@@ -17,6 +17,6 @@ export const currentRole = {
   company: "PREVISIONZ",
   city: "Saarbrücken",
   since: "2025-10",
-  focus: ["agentic", "mlops", "recommender", "fabric"],
-  tech: ["Azure Machine Learning", "Microsoft Fabric", "Azure Synapse", "Agentic AI"]
+  focus: ["agents", "mlops", "pipelines", "architecture"],
+  tech: ["Azure", "Microsoft Fabric", "Google Cloud", "Apache Spark", "Apache Airflow"]
 } as const;

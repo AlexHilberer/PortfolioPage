@@ -72,12 +72,12 @@
     "now": {
       "label": "Heute",
       "since": "seit {{date}}",
-      "focusHeading": "Aktuelle Schwerpunkte",
+      "focusHeading": "Woran ich gerade arbeite",
       "focus": {
-        "agentic": "Agentische KI-Lösung zur Simulation und Analyse von Vertriebsdaten",
-        "mlops": "End-to-End-MLOps-Workflow in Azure Machine Learning zur Klassifikation von Kundenabwanderung",
-        "recommender": "Empfehlungssystem für Bankprodukte mit hybriden kollaborativen Filterverfahren",
-        "fabric": "Migration von Azure Synapse Analytics zu Microsoft Fabric"
+        "agents": "LLM-Anwendungen und KI-Agenten bauen, von der ersten Idee bis zum Einsatz",
+        "mlops": "MLOps: Modelle ausrollen, im Blick behalten und so viel wie möglich automatisieren",
+        "pipelines": "Datenpipelines und ETL/ELT-Strecken für Analytics und ML bauen und am Laufen halten",
+        "architecture": "Datenarchitekturen entwerfen, die auch dann noch tragen, wenn die Daten wachsen"
       }
     }
   },

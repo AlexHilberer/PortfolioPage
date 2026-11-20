@@ -72,12 +72,12 @@
     "now": {
       "label": "Today",
       "since": "since {{date}}",
-      "focusHeading": "Current focus",
+      "focusHeading": "What I'm working on",
       "focus": {
-        "agentic": "Agentic AI solution to simulate and analyse sales data",
-        "mlops": "End-to-end MLOps workflow in Azure Machine Learning for customer churn classification",
-        "recommender": "Recommendation system for banking products using hybrid collaborative filtering",
-        "fabric": "Migration from Azure Synapse Analytics to Microsoft Fabric"
+        "agents": "Building LLM apps and AI agents, from the first idea all the way to production",
+        "mlops": "MLOps: shipping models, keeping an eye on them and automating as much as possible",
+        "pipelines": "Building data pipelines and ETL/ELT flows for analytics and ML, and keeping them running",
+        "architecture": "Designing data architectures that still hold up when the data keeps growing"
       }
     }
   },
